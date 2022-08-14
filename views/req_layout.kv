@@ -1,0 +1,845 @@
+# -*- coding: utf-8 -*-
+#:import datetime datetime
+#:set norm_background_color (0.90,0.89,0.82,1)
+
+<ReqLayout>:
+    department: ''
+    i_unit: i_unit
+    i_quantity: i_quantity
+    query_scroll_layout: query_scroll_layout
+    BoxLayout:
+    BoxLayout:
+        size_hint_x : None
+        width : "600sp"
+        spacing : "1sp"
+        padding : "1sp"
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: None
+            height: "5sp"
+        BoxLayout:
+            spacing : "1sp"
+            padding : "1sp"
+            size_hint_y : None
+            height : "30sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                spacing : "1sp"
+                canvas:
+                    Color:
+                        rgb: (0, 0, 0, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                BoxLayout:
+                    size_hint_x: None
+                    width: "75sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        id : delivery_id
+                        text_size : self.size
+                        halign : "right"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : "Siparis No: "
+                BoxLayout:
+                    size_hint_x: None
+                    width: "60sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        id: eo_doc_n
+                        text: ' '+str(root.new_id)
+                        text_size : self.size
+                        halign : "left"
+                        valign : "middle"
+                        color: 0,0,0,1
+                BoxLayout:
+                    size_hint_x: None
+                    width: "75sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "right"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : "Personel: "
+                BoxLayout:
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    TextInput:
+                        background_color: norm_background_color
+                        id: i_staff
+                        font_size : '12sp'
+                        color: 0,0,0,1
+                        write_tab: False
+        BoxLayout:
+            spacing : "1sp"
+            padding : "1sp"
+            size_hint_y : None
+            height : "30sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                spacing : "1sp"
+                canvas:
+                    Color:
+                        rgb: (0, 0, 0, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                BoxLayout:
+                    size_hint_x: None
+                    width: "63sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "right"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : "Başlatıcı: "
+                BoxLayout:
+                    id: departmant_group
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    ToggleButton:
+                        on_press: root.set_department(self)
+                        text:"Uretim"
+                        group: 'opts'
+                    ToggleButton:
+                        on_press: root.set_department(self)
+                        text:"Lojistik"
+                        group: 'opts'
+                    ToggleButton:
+                        on_press: root.set_department(self)
+                        text:"Kalite"
+                        group: 'opts'
+                    ToggleButton:
+                        on_press: root.set_department(self)
+                        text:"Muhasebe"
+                        group: 'opts'
+                    ToggleButton:
+                        on_press: root.set_department(self)
+                        text:"Satinalma"
+                        group: 'opts'
+        BoxLayout:
+            spacing : "1sp"
+            padding : "1sp"
+            size_hint_y : None
+            height : "30sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                spacing : "1sp"
+                canvas:
+                    Color:
+                        rgb: (0, 0, 0, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                BoxLayout:
+                    size_hint_x: None
+                    width: "47sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "right"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : "Talep: "
+                BoxLayout:
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    ToggleButton:
+                        id: row_mat_button
+                        size_hint_x: None
+                        width: "75sp"
+                        on_press: root.set_item_type(self)
+                        text:"H.Madde"
+                    TextInput:
+                        background_color: norm_background_color
+                        id: i_request
+                        font_size : '12sp'
+                        color: 0,0,0,1
+                        write_tab: False
+                BoxLayout:
+                    size_hint_x: None
+                    width: "120sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    TextInput:
+                        background_color: norm_background_color
+                        id: i_quantity
+                        hint_text: 'Miktar'
+                        input_filter: 'float'
+                        font_size : '12sp'
+                        color: 0,0,0,1
+                        write_tab: False
+                    TextInput:
+                        background_color: norm_background_color
+                        id: i_unit
+                        hint_text: 'birim'
+                        font_size : '12sp'
+                        color: 0,0,0,1
+                        write_tab: False
+        BoxLayout:
+            spacing : "1sp"
+            padding : "1sp"
+            size_hint_y : None
+            height : "30sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                spacing : "1sp"
+                canvas:
+                    Color:
+                        rgb: (0, 0, 0, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                BoxLayout:
+                    size_hint_x: None
+                    width: "95sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "right"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : "Talep sebebi: "
+                BoxLayout:
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    TextInput:
+                        background_color: norm_background_color
+                        id: i_porpose
+                        font_size : '12sp'
+                        color: 0,0,0,1
+                        write_tab: False
+        BoxLayout:
+            spacing : "1sp"
+            padding : "1sp"
+            size_hint_y : None
+            height : "30sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                spacing : "1sp"
+                canvas:
+                    Color:
+                        rgb: (0, 0, 0, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                BoxLayout:
+                    size_hint_x: None
+                    width: "55sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "right"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : "Marka: "
+                BoxLayout:
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    TextInput:
+                        background_color: norm_background_color
+                        id: i_marka
+                        font_size : '12sp'
+                        color: 0,0,0,1
+                        write_tab: False
+                BoxLayout:
+                    size_hint_x: None
+                    width: "80sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "right"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : "Tedarikci: "
+                BoxLayout:
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    TextInput:
+                        background_color: norm_background_color
+                        id: i_supplier
+                        font_size : '12sp'
+                        color: 0,0,0,1
+                        write_tab: False
+        BoxLayout:
+            spacing : "1sp"
+            padding : "1sp"
+            size_hint_y : None
+            height : "30sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                spacing : "1sp"
+                canvas:
+                    Color:
+                        rgb: (0, 0, 0, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                BoxLayout:
+                    size_hint_x: None
+                    width: "55sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "right"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : "Kontrol: "
+                BoxLayout:
+                    id: contr_method_group
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    ToggleButton:
+                        mes_id: 'view'
+                        on_press: root.set_measure_methods(self)
+                        text:"Goz"
+                        group: 'measure_tool1'
+                    ToggleButton:
+                        mes_id: 'color'
+                        on_press: root.set_measure_methods(self)
+                        text:"Renk"
+                        group: 'measure_tool2'
+                    ToggleButton:
+                        mes_id: 'shape'
+                        on_press: root.set_measure_methods(self)
+                        text:"Form"
+                        group: 'measure_tool3'
+                    ToggleButton:
+                        mes_id: 'metr'
+                        on_press: root.set_measure_methods(self)
+                        text:"Metre"
+                        group: 'measure_tool4'
+                    # ToggleButton:
+                    #     mes_id: 'quantity'
+                    #     on_press: root.set_measure_methods(self)
+                    #     text:"Miktar"
+                    #     group: 'measure_tool5'
+                    ToggleButton:
+                        mes_id: 'caliper'
+                        on_press: root.set_measure_methods(self)
+                        text:"Kumpas"
+                        group: 'measure_tool6'
+                    ToggleButton:
+                        mes_id: 'micrometer'
+                        size_hint_x: None
+                        width: "100sp"
+                        on_press: root.set_measure_methods(self)
+                        text:"Mikrometre"
+                        group: 'measure_tool7'
+        BoxLayout:
+            spacing : "1sp"
+            padding : "1sp"
+            size_hint_y : None
+            height : "30sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                spacing : "1sp"
+                canvas:
+                    Color:
+                        rgb: (0, 0, 0, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                BoxLayout:
+                    size_hint_x: None
+                    width: "45sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "right"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : "Alıcı: "
+                BoxLayout:
+                    id: cons_department_group
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    ToggleButton:
+                        on_press: root.set_cons_department(self)
+                        text:"Uretim"
+                        group: 'cons_dep'
+                    ToggleButton:
+                        on_press: root.set_cons_department(self)
+                        text:"Lojistik"
+                        group: 'cons_dep'
+                    ToggleButton:
+                        on_press: root.set_cons_department(self)
+                        text:"Kalite"
+                        group: 'cons_dep'
+                    ToggleButton:
+                        on_press: root.set_cons_department(self)
+                        text:"Muhasebe"
+                        group: 'cons_dep'
+                    ToggleButton:
+                        on_press: root.set_cons_department(self)
+                        text:"Satinalma"
+                        group: 'cons_dep'
+        BoxLayout:
+            spacing : "1sp"
+            padding : "1sp"
+            size_hint_y : None
+            height : "30sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                spacing : "1sp"
+                canvas:
+                    Color:
+                        rgb: (0, 0, 0, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                BoxLayout:
+                    size_hint_x: None
+                    width: "45sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "right"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : "Not: "
+                BoxLayout:
+                    size_hint_x : 1
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    TextInput:
+                        background_color: norm_background_color
+                        id: i_note
+                        font_size : '12sp'
+                        color: 0,0,0,1
+                        write_tab: False
+        BoxLayout:
+            id: media_row
+            spacing : "1sp"
+            padding : "1sp"
+            size_hint_y : None
+            height : "30sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                spacing : "1sp"
+                canvas:
+                    Color:
+                        rgb: (0, 0, 0, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                BoxLayout:
+                    size_hint_x: None
+                    width: "45sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "right"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : "Media: "
+                StackLayout:
+                    id: thumbnails
+                    spacing : "5sp"
+                    padding : "5sp"
+                    orientation: 'lr-tb'
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+        BoxLayout:
+            spacing : "1sp"
+            padding : "1sp"
+            size_hint_y : None
+            height : "30sp"
+
+            BoxLayout:
+                size_hint_x: None
+                width: "120sp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Button:
+                    text:'Form temizleme'
+                    on_release: root.clear_form()
+            BoxLayout:
+            BoxLayout:
+                size_hint_x: None
+                width: "100sp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Button:
+                    text:'Media Ekle'
+                    on_release: root.insert_media()
+            BoxLayout:
+                size_hint_x: None
+                width: "100sp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Button:
+                    text:'Tamam'
+                    on_release: root.save_info()
+        ScrollView:
+            id : query_scroll_layout
+            do_scroll_x: False
+            do_scroll_y: True
+    BoxLayout:
+
+
+<OneRequestRow>:
+    spacing : "1sp"
+    rows: 10
+    size_hint_y : None
+    height : self.minimum_height
+    canvas:
+        Color:
+            rgb: (0, 0, 0, 1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    doc_n :         " Sip.No: _repl_doc_n"
+    department:     " Başlatıcı: _repl_department"
+    staff:          " Personel: _repl_staff"
+    doc_date:       " Tarih: _repl_doc_date"
+    request:        " Talep: _repl_request"
+    quantity:       " Miktar: _repl_quantity"
+    marka:          " Marka: _repl_marka"
+    purpose:        " Sebeb: _repl_purpose"
+    supplier:       " Tedarekci: _repl_supplier"
+    contrl_methods: " Kontrol yonetemi: _repl_contrl_methods"
+    cons_dep:       " Alıcı: _repl_cons_dep"
+    note:           " Not: _repl_note"
+
+    thumbnails_layout:  thumbnails_layout
+    thumbnails:         thumbnails
+
+    clr: (0, 0, 0, 1)
+    row_height: "31sp"
+
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing : "1sp"
+        size_hint_y : None
+        height : root.row_height
+        canvas:
+            Color:
+                rgba: (0, 0, 0, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            size_hint_x: None
+            width: "105sp"
+            canvas:
+                Color:
+                    rgba: root.clr
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text_size : self.size
+                halign : "left"
+                valign : "middle"
+                color: 0,0,0,1
+                text : root.doc_n
+        BoxLayout:
+            size_hint_x : None
+            width: "105sp"
+            canvas:
+                Color:
+                    rgba: root.clr
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text_size : self.size
+                halign : "left"
+                valign : "middle"
+                color: 0,0,0,1
+                text : root.doc_date
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba: root.clr
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text_size : self.size
+                halign : "left"
+                valign : "middle"
+                color: 0,0,0,1
+                text : root.purpose
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing : "1sp"
+        size_hint_y : None
+        height : root.row_height
+        canvas:
+            Color:
+                rgba: (0, 0, 0, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba: root.clr
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text_size : self.size
+                halign : "left"
+                valign : "middle"
+                color: 0,0,0,1
+                text : root.request + ' / ' + root.quantity
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing : "1sp"
+        size_hint_y : None
+        height : root.row_height
+        canvas:
+            Color:
+                rgba: (0, 0, 0, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            size_hint_x: 0.7
+            canvas:
+                Color:
+                    rgba: root.clr
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text_size : self.size
+                halign : "left"
+                valign : "middle"
+                color: 0,0,0,1
+                text : root.supplier + ' / ' + root.marka
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing : "1sp"
+        size_hint_y : None
+        height : root.row_height
+        canvas:
+            Color:
+                rgba: (0, 0, 0, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba: root.clr
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text_size : self.size
+                halign : "left"
+                valign : "middle"
+                color: 0,0,0,1
+                text : root.department + ' / ' + root.staff + ' / ' + root.cons_dep
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing : "1sp"
+        size_hint_y : None
+        height : root.row_height
+        canvas:
+            Color:
+                rgba: (0, 0, 0, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba: root.clr
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text_size : self.size
+                halign : "left"
+                valign : "middle"
+                color: 0,0,0,1
+                text : root.note
+    GridLayout:
+        id: thumbnails_layout
+        rows: 1
+        orientation: 'lr-tb'
+        spacing : "10sp"
+        size_hint_y: None
+        height: self.minimum_height
+        StackLayout:
+            id: thumbnails
+            size_hint_y: None
+            height: root.row_height
+            spacing: "5sp"
+            padding: "10sp"
+            orientation: 'lr-tb'
+            canvas:
+                Color:
+                    rgba: root.clr
+                Rectangle:
+                    size: self.size
+                    pos: self.pos

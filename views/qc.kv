@@ -1,0 +1,50 @@
+<RootWidget>:
+    tabbed_panel: tabbed_panel
+    tools_screen: tools_screen
+    c_report: c_report
+    cr_tab: cr_tab
+    orientation: "vertical"
+    canvas:
+        Color:
+            rgba: [0.19, 0.19, 0.19, 1]
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    TabbedPanel:
+        tab_pos: 'bottom_mid'
+        do_default_tab: False
+        tab_width: "130sp"
+        id: tabbed_panel
+        TabbedPanelItem:
+            text: 'Tezgahlar\nListesi'
+            ToolsScreen:
+                id: tools_screen
+        TabbedPanelItem:
+            id: cr_tab
+            text: u'Kontrol\nRaporu'
+            ContrRep:
+                id: c_report
+        TabbedPanelItem:
+            text: 'İş\nEmri'
+            NewTaskInput:
+        TabbedPanelItem:
+            id: requirements
+            text: 'Talep\nFormu'
+            ReqLayout:
+                id: req_layout
+    BoxLayout:
+        size_hint_y: None
+        height: "17sp"
+        orientation: "horizontal"
+        canvas:
+            Color:
+                rgba: (0.90,0.89,0.82,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: " © EnesOtomat"
+            color: (0.19, 0.19, 0.19, 1)
+        Label:
+            text: "www.enesotomat.com.tr"
+            color: (0.19, 0.19, 0.19, 1)

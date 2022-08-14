@@ -1,0 +1,652 @@
+#:import datetime datetime
+###:include lib.kv
+###:include ..\\robo_control_report\\cr.kv
+#:set norm_background_color (0.90,0.89,0.82,1)
+#:set req_left_col 115
+<DatePicker>:
+
+    pHint: .3, .3
+
+
+<TaskView>:
+    spacing : "1sp"
+    size_hint_y : None
+    height : self.minimum_height
+    orientation: 'horizontal'
+    size_hint_y : None
+    height : "31sp"
+    task_id: '---'
+    ppap_id: '---'
+    quantity: '---'
+    finish_date: '---'
+    remove_bttn: remove_bttn
+    bttn: bttn
+    norm_background_color: [0.90,0.19,0.12,1]
+    canvas:
+        Color:
+            rgb: (0, 0, 0, 1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_x: None
+        width: "91sp"
+        canvas:
+            Color:
+                rgb: root.norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            background_color: norm_background_color
+            text: root.task_id
+            font_size : '13sp'
+            color: 0,0,0,1
+            halign : "left"
+            valign : "middle"
+    BoxLayout:
+        # size_hint_x: None
+        # width: 125
+        canvas:
+            Color:
+                rgb: root.norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            background_color: norm_background_color
+            text: root.ppap_id
+            font_size : '13sp'
+            color: 0,0,0,1
+            halign : "left"
+            valign : "middle"
+    BoxLayout:
+        size_hint_x: None
+        width: "89sp"
+        canvas:
+            Color:
+                rgb: root.norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            background_color: norm_background_color
+            text: root.quantity
+            font_size : '13sp'
+            color: 0,0,0,1
+            halign : "left"
+            valign : "middle"
+    BoxLayout:
+        size_hint_x: None
+        width: "113sp"
+        canvas:
+            Color:
+                rgb: root.norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            background_color: norm_background_color
+            text: root.finish_date
+            font_size : '13dp'
+            color: 0,0,0,1
+            halign : "left"
+            valign : "middle"
+    BoxLayout:
+        size_hint_x: None
+        width: "83sp"
+        canvas:
+            Color:
+                rgb: root.norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        ToggleButton:
+            size_hint_x: None
+            width: "31sp"
+            id: remove_bttn
+            text: '√'
+            font_size : '13sp'
+            color: 0,0,0,1
+            item_id: root.task_id
+            on_state: root.set_mystate(self.state)
+        ToggleButton:
+            # background_color: norm_background_color
+            id: bttn
+            item_id: root.task_id
+            group: 'edit'
+            text: '∆'
+            font_size : '13sp'
+            color: 0,0,0,1
+            on_state: root.mark_me(self.state)
+
+
+<HeaderTask>:
+    size_hint_y : None
+    height : "47sp"
+    canvas:
+        Color:
+            rgb: (0, 0, 0, 1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        spacing : "1sp"
+        canvas:
+            Color:
+                rgb: (0, 0, 0, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            size_hint_x: None
+            width: "91sp"
+            canvas:
+                Color:
+                    rgb: root.norm_background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                id: task_id
+                text_size : self.size
+                halign : "center"
+                valign : "middle"
+                color: 0,0,0,1
+                text : "İş\nemri"
+        BoxLayout:
+            canvas:
+                Color:
+                    rgb: root.norm_background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                id: ppap_id
+                text_size : self.size
+                halign : "center"
+                valign : "middle"
+                color: 0,0,0,1
+                text : "PPAP\nadı/kodu"
+        BoxLayout:
+            size_hint_x: None
+            width: "89sp"
+            canvas:
+                Color:
+                    rgb: root.norm_background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                id: parts_ammount
+                text_size : self.size
+                halign : "center"
+                valign : "middle"
+                color: 0,0,0,1
+                text : "Siparış\nadeti"
+        BoxLayout:
+            size_hint_x: None
+            width: "113sp"
+            canvas:
+                Color:
+                    rgb: root.norm_background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                id: delivery_date
+                text_size : self.size
+                halign : "center"
+                valign : "middle"
+                color: 0,0,0,1
+                text : "Teslim\ntarihi"
+        BoxLayout:
+            size_hint_x: None
+            width: "30sp"
+            canvas:
+                Color:
+                    rgb: norm_background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text: 'Seç'
+                font_size : '12dp'
+                color: 0,0,0,1
+        BoxLayout:
+            size_hint_x: None
+            width: "52sp"
+            canvas:
+                Color:
+                    rgb: norm_background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                # background_color: norm_background_color
+                id: bttn
+                text: 'Düzenle'
+                font_size : '12dp'
+                color: 0,0,0,1
+
+
+<NewTaskInput>:
+    tasks_layout: tasks_layout
+    task_input_form: task_input_form
+    BoxLayout:
+        orientation : 'horizontal'
+        BoxLayout:
+            ## levaya pustota
+        BoxLayout:
+            id: middle_layout
+            size_hint_x : None
+            width : "700sp"
+            spacing : "1sp"
+            padding : "1sp"
+            orientation: 'vertical'
+            BoxLayout:
+                size_hint_y: None
+                height: "11sp"
+            TaskInputForm:
+                id: task_input_form
+                size_hint_y: None
+                height: "101sp"
+                prnt: root
+            BoxLayout:
+                orientation: "vertical"
+                HeaderTask:
+                BoxLayout:
+                    size_hint_y: None
+                    height: "1sp"
+                TasksSView:
+                    GridLayout:
+                        id: tasks_layout
+                        cols: 1
+                        spacing: "1sp"
+                        size_hint_y: None
+                        height: self.minimum_height
+                BoxLayout:
+                    size_hint_y: None
+                    height: "1sp"
+                TaskButtons:
+                    parent: root
+        BoxLayout:
+            ## pravaya pustota
+
+
+<TasksSView@ScrollView>:
+    do_scroll_x: False
+    do_scroll_y: True
+    ##dobavleni canvas chtob scroll view ne vihodil za verhnuiu granicu roditelya!!!!!!!!!!!!!!!!
+    canvas.before:
+        StencilPush
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        StencilUse
+
+    canvas.after:
+        StencilUnUse
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        StencilPop
+
+
+<FormButtons@BoxLayout>:
+    spacing : "1sp"
+    size_hint_y : None
+    height : "30sp"
+    parent: root
+    canvas:
+        Color:
+            rgba: (0.1,0.1,0.1,0.3)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_x: None
+        width: "120sp"
+        canvas:
+            Color:
+                rgb: norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Button:
+            text:'Form temizle'
+            on_release: root.parent.clear_form()
+    BoxLayout:
+        size_hint_x: None
+        width: "70sp"
+        canvas:
+            Color:
+                rgb: norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Button:
+            text:'Sil'
+            on_release: root.parent.remove_marked_dims()
+    BoxLayout:
+    BoxLayout:
+        size_hint_x: None
+        width: "100sp"
+        canvas:
+            Color:
+                rgb: norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Button:
+            text:u'Koru'
+            on_release: root.parent.save_data()
+
+
+<TaskButtons@BoxLayout>:
+    spacing : "1sp"
+    size_hint_y : None
+    height : "30sp"
+    parent: root
+    canvas:
+        Color:
+            rgba: (0.1,0.1,0.1,0.3)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+    BoxLayout:
+        size_hint_x: None
+        width: "70sp"
+        canvas:
+            Color:
+                rgb: norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Button:
+            text:'Sil'
+            on_release: root.parent.remove_task()
+    BoxLayout:
+        size_hint_x: None
+        width: "100sp"
+        canvas:
+            Color:
+                rgb: norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Button:
+            text:'Emir Ekle'
+            on_release: root.parent.add_new_task()
+
+
+<TaskInputForm>:
+    task_id: task_id
+    finish_date: finish_date
+    ppap_id: ppap_id
+    second_row: second_row
+    quantity: quantity
+    rows_layout: rows_layout
+    set_part_name_id: set_part_name_id
+    orientation: "vertical"
+    spacing: "1sp"
+    BoxLayout:
+        spacing : "1sp"
+        size_hint_y : None
+        height : "30sp"
+        canvas:
+            Color:
+                rgb: (0, 0, 0, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            spacing : "1sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                size_hint_x: None
+                width: "101sp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Label:
+                    text_size : self.size
+                    halign : "right"
+                    valign : "middle"
+                    color: 0,0,0,1
+                    text : "İş emri No: "
+            BoxLayout:
+                size_hint_x: None
+                width: "93sp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                TextInput:
+                    id: task_id
+                    on_text: root.set_new_task_id(self.text)
+                    font_size : '12sp'
+                    color: 0,0,0,1
+                    write_tab: False
+            BoxLayout:
+                size_hint_x: None
+                width: "141sp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Label:
+                    text_size : self.size
+                    halign : "right"
+                    valign : "middle"
+                    color: 0,0,0,1
+                    text : " PPAP No/parça adı: "
+            BoxLayout:
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                TextInput:
+                    # background_color: norm_background_color
+                    id: ppap_id
+                    disabled: True
+                    on_text: root.set_new_task_part_name_id()
+                    font_size : '12sp'
+                    color: 0,0,0,1
+                    write_tab: False
+            BoxLayout:
+                size_hint_x: None
+                width: "31sp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Button:
+                    id: set_part_name_id
+                    text: "<<"
+                    on_release: root.select_ppap()
+    BoxLayout:
+        id: second_row
+        spacing : "1sp"
+        size_hint_y : None
+        height : "30sp"
+        canvas:
+            Color:
+                rgb: (0, 0, 0, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            spacing : "1sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                size_hint_x: None
+                width: "101sp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Label:
+                    text_size : self.size
+                    halign : "right"
+                    valign : "middle"
+                    color: 0,0,0,1
+                    text : "Siparış adeti: "
+            BoxLayout:
+                size_hint_x: None
+                width: "93sp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                TextInput:
+                    id: quantity
+                    input_filter: 'int'
+                    font_size : '12sp'
+                    on_text: root.set_new_task_quantity(self.text)
+                    color: 0,0,0,1
+                    write_tab: False
+            BoxLayout:
+                size_hint_x: None
+                width: "121sp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Label:
+                    text_size : self.size
+                    halign : "right"
+                    valign : "middle"
+                    color: 0,0,0,1
+                    text : " Teslim tarihi: "
+            BoxLayout:
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                TextInput:
+                    # background_color: norm_background_color
+                    id: finish_date
+                    on_text: root.set_new_task_finish_date(self.text)
+                    font_size : '12sp'
+                    color: 0,0,0,1
+                    write_tab: False
+    BoxLayout:
+        orientation: "vertical"
+        # height: 0.2
+        BoxLayout:
+            size_hint_y: None
+            height: "2sp"
+        TasksSView:
+            GridLayout:
+                id: rows_layout
+                cols: 1
+                spacing: "1sp"
+                size_hint_y: None
+                height: self.minimum_height
+    FormButtons:
+        parent: root
+
+
+<OpenImage>:
+    rows:3
+    id:my_widget
+    spacing: "2sp"
+    #FileChooserListView:
+    FileChooserIconView:
+        id:filechooser
+        path: './../'
+        filters:  ['*.jpeg', '*.jpg', '*.png']
+        on_selection:my_widget.selected(filechooser.selection)
+    Image:
+        id:image
+        source:""
+    BoxLayout:
+        size_hint_y: None
+        height: "37sp"
+        BoxLayout:
+        Button:
+            text: 'Tamam'
+            size_hint_x: None
+            width: "100sp"
+            on_release: root.get_file_path()
+        Button:
+            text: 'Iptal'
+            size_hint_x: None
+            width: "100sp"
+            on_release: root.close_popup()
+
+
+<PPAPsList>:
+    ppaps_layout: ppaps_layout
+    cancel_button: cancel_button
+    rows: 2
+    ScrollView:
+        GridLayout:
+            id: ppaps_layout
+            cols: 1
+            spacing: "1sp"
+            size_hint_y: None
+            height: self.minimum_height
+    BoxLayout:
+        size_hint_y: None
+        height: "25sp"
+        orientation: "horizontal"
+        BoxLayout:
+        Button:
+            id: cancel_button
+            size_hint_x: None
+            width: "100sp"
+            text: 'Iptal'
+
+
+<SinglePPAP>:
+    aplay_button: aplay_button
+    spacing: "1sp"
+    size_hint_y: None
+    height: "27sp"
+    BoxLayout
+        canvas:
+            Color:
+                rgba: norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: root.ppap_id_name
+            color: 0,0,0,1
+    Button:
+        size_hint_x: None
+        width: "27sp"
+        text: '>>'
+        id: aplay_button

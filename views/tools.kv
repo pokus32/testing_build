@@ -1,0 +1,493 @@
+#:set nok_color_green (0, 0.89, 0, 1)
+#:set nok_color_red (2, 0.2, 0, 1)
+
+#:set alarm_color_green_off (0, 0.5, 0, 1)
+#:set alarm_color_green_on (0, 3, 0, 1)
+
+#:set alarm_color_yellow_off (0.5, 0.42, 0, 1)
+#:set alarm_color_yellow_on (2, 2.49, 0, 1)
+
+#:set alarm_color_red_off (0.7, 0, 0, 1)
+#:set alarm_color_red_on (3, 0, 0, 1)
+
+#:set m1_on_bk_col [0, 2, 0, 1]
+#:set m1_off_bk_col [0, 0.75, 0,1]
+
+#:set norm_background_color (0.90,0.89,0.82,1)
+
+<ToolsScreen>:
+	rows_layout: rows_layout
+	main_layout: main_layout
+	GridLayout:
+		id: main_layout
+		rows: 3
+		spacing: "1sp"
+		padding: "1sp"
+		canvas:
+	        Color:
+	            rgba: [0.1, 0.1, 0.1, 0.1]#(0, 0, 0.1, 0)
+	        Rectangle:
+	            size: self.size
+	            pos: self.pos
+		HeaderBoxLayout:
+			date_time: root.date_time
+		SView:
+			GridLayout:
+				id: rows_layout
+				cols: 1
+				spacing: 2
+				size_hint_y: None
+		        height: self.minimum_height
+		        # OneRowGridLayout:
+		        # 	bg_color: [0.70,1,0.43,0.51]
+		        # OneRowGridLayout:
+		        # 	bg_color: [0.49,1,1,0.51]
+		# FooterBoxLayout:
+
+<HeaderBoxLayout@BoxLayout>:
+	size_hint_y : None
+	height : "51sp"
+	spacing : "2sp"
+	padding : "2sp"
+	orientation: 'horizontal'
+	date_time: '---'
+	canvas:
+        Color:
+            rgba: norm_background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    AsyncImage:
+        id: eologo
+        size_hint_x : None
+        width : "100sp"
+        source: 'images/eologo_bej.png'
+    BoxLayout:
+    	size_hint_x: 1
+	    Label:
+	    	text: 'ÜRETİM SORUMLUSU'
+	    	font_size: "40sp"
+	    	color: (0, 0, 0, 1)
+	Label:
+		text: root.date_time
+		font_size: "20sp"
+		color: (0, 0, 0, 1)
+		size_hint_x: None
+		width: "111sp"
+
+<SView@ScrollView>:
+    do_scroll_x: False
+    do_scroll_y: True
+    # dodavleni canvas chtob scroll view ne vihodil za verhnuiu granicu roditelya!!!!!!!!!!!!!!!!
+    canvas.before:
+        StencilPush
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        StencilUse
+
+    canvas.after:
+        StencilUnUse
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        StencilPop
+
+<OneRowGridLayout>:
+	orientation: "lr-tb"
+	rows: 2
+	size_hint_y : None
+    height : "127sp"
+    spacing : "1sp"
+	data_layout: data_layout
+	select_task: select_task
+	detach_task: detach_task
+	open_cr_scr: open_cr_scr
+	alarm_button: first_column.alarm_button
+	m1_button: first_column.m1_button
+
+    tool_id: '0'
+    bg_color: (0.0, 0.18, 0.73, 1)
+    text_color:  (0,0,0.1,1)
+    mach_number: '==' ##seriyniy nomer stanka
+    mach_type: '___'
+    col1_third_row: '___'
+    
+    task_id: 	'==='
+    task_parts_count: '0'
+    part_name: 	' ==='
+    material: 	' ==='
+    packet_id: '==='
+    part_count: ' Parça sayısı:'
+
+    drw_number: ' ==='
+    last_control_date: 	' last_measurement_date_time'
+    control_period : ' 0'
+    cycle_time: ' 0'
+    operator_name: ''
+
+    m1: False
+    red: 0
+    yellow: 0
+    green: 0
+    nok: 0
+	GridLayout:
+		id: data_layout
+	    size_hint_y : None
+	    height : "99sp"
+	    spacing : "1sp"
+	    # padding : 1
+	    # orientation: 'horizontal'
+	    cols: 4
+	   
+
+		FirstColGridLayout:
+			id: first_column
+			size_hint_x: None
+			width: "81sp"
+			text_color:  root.text_color
+			bg_color: root.bg_color
+			tool_id: root.tool_id
+
+			first_row: " Mak No: " + root.tool_id
+	    SecondColGridLayout:
+	    	text_color:  root.text_color
+	    	bg_color: root.bg_color
+
+			first_row: ' İş emri No: ' + root.task_id + '/' + root.task_parts_count
+			second_row: ' Parça adı: ' + root.part_name
+			third_row: ' Malzeme: ' + root.material
+			fourth_row: ' Kasa No/Parça adeti: '+ root.packet_id  + '/' + root.part_count
+			
+			# m1: root.m1
+		 #    red: root.red
+		 #    yellow: root.yellow
+		 #    green: root.green
+		 #    nok: root.nok
+	    ThirdColGridLayout:
+	    	text_color:  root.text_color
+
+			first_row: ' T.resim no: ' + root.drw_number
+			second_row: root.last_control_date
+			third_row: ' Işleme süresı: ' + root.cycle_time
+			fourth_row: ' Operator: ' + root.operator_name
+
+			bg_color: root.bg_color
+	FourthColGridLayout:
+		bg_color: root.bg_color
+		rows: 1
+		Button:
+			id: select_task
+			text: 'İş Emri ekle'
+			halign: "center"
+			tool_id: root.tool_id
+		Button:
+			id: detach_task
+			text: 'İş Emri çikart'
+			halign: "center"
+			tool_id: root.tool_id
+		Button:
+			text: ''
+			tool_id: root.tool_id
+		Button:
+		Button:
+		Button:
+			id: open_cr_scr
+			text: 'KR'
+			tool_id: root.tool_id
+
+<FirstColGridLayout>:
+	alarm_button: alarm_button
+	m1_button: m1_button
+	tool_id: ''
+    rows: 3
+	orientation: 'lr-tb'
+    text_color: (0,0,0,1)
+    bg_color: (0, 1, 0.5, 0)
+	OneLabelGridLayout:
+		lb_color: root.text_color
+		lb_text: root.first_row
+		bg_color: root.bg_color
+	Button:
+		id: alarm_button
+		text: 'ALARM'
+		background_color: alarm_color_red_off
+		# size_hint_x: None
+		# width: 35
+	Button:
+		id: m1_button
+		text: 'M1'
+		background_color: m1_off_bk_col
+		tool_id: root.tool_id
+
+<SecondColGridLayout>
+    rows: 4
+	# orientation: 'vertical'
+	# spacing : 1
+    m1: 0
+    red: 0
+    yellow: 0
+    green: 0
+    nok: 0
+    text_color: (0,0,0,1)
+    bg_color: (0, 1, 0.5, 0)
+    on_m1: 
+    	if self.m1 >  0: m1_button.background_color = m1_on_bk_col 
+    	if self.m1 == 0: m1_button.background_color = m1_off_bk_col
+    on_red: 
+    	if self.red == 1: red_button.background_color = alarm_color_red_on 
+    	if self.red == 0: red_button.background_color = alarm_color_red_off
+    on_yellow: 
+    	if self.yellow == 1: yellow_button.background_color = alarm_color_yellow_on 
+    	if self.yellow == 0: yellow_button.background_color = alarm_color_yellow_off
+    on_green: 
+    	if self.green == 1: green_button.background_color = alarm_color_green_on 
+    	if self.green == 0: green_button.background_color = alarm_color_green_off
+    on_nok: 
+    	if self.nok >= 1: nok_button.background_color = nok_color_red 
+    	if self.nok == 0: nok_button.background_color = nok_color_green
+    	nok_button.text = 'NOK:' + str(self.nok)
+	OneLabelGridLayout:
+		lb_color: root.text_color
+		lb_text: root.first_row
+		halign: 'left'
+		bg_color: root.bg_color
+	OneLabelGridLayout:
+		lb_color: root.text_color
+		lb_text: root.second_row
+		halign: 'left'
+		bg_color: root.bg_color
+	OneLabelGridLayout:
+		lb_color: root.text_color
+		lb_text: root.third_row
+		halign: 'left'
+		bg_color: root.bg_color
+	OneLabelGridLayout:
+		lb_color: root.text_color
+		lb_text: root.fourth_row
+		halign: 'left'
+		bg_color: root.bg_color
+
+<ThirdColGridLayout@GridLayout>
+    rows: 4
+	# orientation: 'vertical'
+	# spacing : 1
+	bg_color: (0, 1, 0.5, 0)
+    text_color: (0,0,0,1)
+	OneLabelGridLayout:
+		lb_color: root.text_color
+		lb_text: root.first_row
+		halign: 'left'
+		bg_color: root.bg_color
+	OneLabelGridLayout:
+		lb_color: root.text_color
+		lb_text: root.second_row
+		halign: 'left'
+		bg_color: root.bg_color
+	OneLabelGridLayout:
+		lb_color: root.text_color
+		lb_text: root.third_row
+		halign: 'left'
+		bg_color: root.bg_color
+	OneLabelGridLayout:
+		lb_color: root.text_color
+		lb_text: root.fourth_row
+		halign: 'left'
+		bg_color: root.bg_color
+
+<FourthColGridLayout>
+    rows: 1
+	bg_color: (0, 0, 0, 0)
+	canvas:
+        Color:
+            rgb: root.bg_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<OneLabelGridLayout>
+	lb_text: ''
+	lb_color: [0,0,0,1]
+	bg_color: ( 0, 0, 0)
+	valign: 'middle'
+	halign: 'center'
+	rows: 1
+	# orientation: 'horizontal'
+	canvas:
+        Color:
+            rgba: root.bg_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+	Label:
+		text: root.lb_text
+		color: root.lb_color
+		text_size: self.size
+		valign: root.valign
+		halign: root.halign
+
+<TasksList>:
+	tasks_layout: tasks_layout
+	cancel_button: cancel_button
+	rows: 2
+	ScrolView:
+		GridLayout:
+			id: tasks_layout
+			cols: 1
+			spacing: 1
+			size_hint_y: None
+			height: self.minimum_height
+	BoxLayout:
+		size_hint_y: None
+		height: "35sp"
+		orientation: "horizontal"
+		BoxLayout:
+		Button:
+			id: cancel_button
+			size_hint_y: None
+			height: "31sp"
+			size_hint_x: None
+			width: "100sp"
+			text: 'Iptal'
+
+<ScrolView@ScrollView>:
+    do_scroll_x: False
+    do_scroll_y: True
+    ##dodavleni canvas chtob scroll view ne vihodil za verhnuiu granicu roditelya!!!!!!!!!!!!!!!!
+    canvas.before:
+        StencilPush
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        StencilUse
+
+    canvas.after:
+        StencilUnUse
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        StencilPop
+
+<OneTask>:
+	task_to_m_tool: task_to_m_tool
+	spacing: 1
+	size_hint_y: None
+	height: "27sp"
+	BoxLayout
+		canvas:
+	        Color:
+	            rgba: norm_background_color
+	        Rectangle:
+	            size: self.size
+	            pos: self.pos
+		Label:
+			text: root.task_id + '/' + root.part_name
+			color: 0,0,0,1
+	Button:
+		size_hint_x: None
+		width: "27sp"
+		text: '>>'
+		id: task_to_m_tool
+
+<PacketsFormLayout>:
+	orientation: "vertical"
+	cancel_button: cancel_button
+	pack_lbl: pack_lbl
+	ok_button: ok_button
+	Label:
+		id: pack_lbl
+		size_hint_y: None
+		height: "41sp"
+		text: ""
+		font_size: "21sp"
+
+	GridLayout:
+		rows: 4
+		GridLayout:
+			cols: 3
+			Button:
+				text:'7'
+				on_release: root.pack_lbl.text += '7'
+			Button:
+				text:'8'
+				on_release: root.pack_lbl.text += '8'
+			Button:
+				text:'9'
+				on_release: root.pack_lbl.text += '9'
+		GridLayout:
+			cols: 3
+			Button:
+				text:'4'
+				on_release: root.pack_lbl.text += '4'
+			Button:
+				text:'5'
+				on_release: root.pack_lbl.text += '5'
+			Button:
+				text:'6'
+				on_release: root.pack_lbl.text += '6'
+		GridLayout:
+			cols: 3
+			Button:
+				text:'1'
+				on_release: root.pack_lbl.text += '1'
+			Button:
+				text:'2'
+				on_release: root.pack_lbl.text += '2'
+			Button:
+				text:'3'
+				on_release: root.pack_lbl.text += '3'
+		GridLayout:
+			cols: 3
+			Button:
+				text:'0'
+				on_release: root.pack_lbl.text += '0'
+			Button:
+				text:'<='
+				on_release: root.pack_lbl.text = root.pack_lbl.text[:-1]
+			Button:
+				text:'Tm'
+				id: ok_button
+				packet_id: root.pack_lbl.text
+
+	Button:
+		id: cancel_button
+		text: "İptal"
+		size_hint_y: None
+		height: "37sp"
+
+<M1CausesList>:
+    main_layout: main_layout
+    cancel_button: cancel_button
+    rows: 2
+    ScrollView:
+        GridLayout:
+            id: main_layout
+            cols: 1
+            spacing: 1
+            size_hint_y: None
+            height: self.minimum_height
+    BoxLayout:
+        size_hint_y: None
+        height: "25sp"
+        orientation: "horizontal"
+        BoxLayout:
+        Button:
+            id: cancel_button
+            size_hint_x: None
+            width: "100sp"
+            text: 'Kapat'
+
+<SingleM1Couse>:
+    spacing: 1
+    size_hint_y: None
+    height: "27sp"
+    BoxLayout
+        canvas:
+            Color:
+                rgba: norm_background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: root.m1_cause
+            color: 0,0,0,1

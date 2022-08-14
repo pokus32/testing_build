@@ -1,0 +1,284 @@
+# -*- coding: utf-8 -*-
+#:import datetime datetime
+###:include lib.kv
+###:include ..\\robo_control_report\\cr.kv
+#:set norm_background_color (0.90,0.89,0.82,1)
+#:set req_left_col 115
+<DatePicker>:
+
+    pHint: .3, .3
+
+
+<DimHeader>:
+    spacing : "1sp"
+    size_hint_y : None
+    height : "47sp"
+    dim_n: dim_n
+    nom: nom
+    tol: tol
+    # measure_instr: measure_instr
+    col_main_header: col_main_header
+    main_header: main_header
+    col_layout: col_layout
+    norm_background_color: [0.90,0.89,0.82,1]
+    BoxLayout:
+        spacing : "1sp"
+        canvas:
+            Color:
+                rgb: (0, 0, 0, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            spacing : "1sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                id: ref_n_layout
+                size_hint_x: None
+                width: "47sp"
+                canvas:
+                    Color:
+                        rgba: root.norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Label:
+                    id: dim_n
+                    text_size : self.size
+                    halign : "center"
+                    valign : "middle"
+                    color: 0,0,0,1
+                    text : "REF No"
+            BoxLayout:
+                size_hint_x: None
+                width: "67sp"
+                canvas:
+                    Color:
+                        rgba: root.norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Label:
+                    id: nom
+                    text_size : self.size
+                    halign : "center"
+                    valign : "middle"
+                    color: 0,0,0,1
+                    text : "Ölçü"
+            BoxLayout:
+                size_hint_x: None
+                width: "67sp"
+                canvas:
+                    Color:
+                        rgba: root.norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Label:
+                    id: tol
+                    text_size : self.size
+                    halign : "center"
+                    valign : "middle"
+                    color: 0,0,0,1
+                    text : "Üst\nAlt"
+            # BoxLayout:
+            #     size_hint_x: None
+            #     width: 97
+            #     canvas:
+            #         Color:
+            #             rgba: root.norm_background_color
+            #         Rectangle:
+            #             size: self.size
+            #             pos: self.pos
+            #     Label:
+            #         id: measure_instr
+            #         text_size : self.size
+            #         halign : "center"
+            #         valign : "middle"
+            #         color: 0,0,0,1
+            #         text : "Ölçu Aleti"
+            GridLayout:
+                rows: 2
+                spacing: "1sp"
+                id: col_main_header
+                BoxLayout:
+                    id: main_header
+                    ColHeader:
+                        text: 'Ölçülen değerler'
+                        size_hint_x: 1
+                        norm_background_color: root.norm_background_color
+                BoxLayout:
+                    spacing: "1sp"
+                    id: col_layout
+                    ColHeader:
+                        id: col_1
+                        text: '1'
+                        # norm_background_color: norm_background_color
+                    ColHeader:
+                        id: col_2
+                        text: '2'
+                        norm_background_color: norm_background_color
+                    ColHeader:
+                        id: col_3
+                        text: '3'
+                        # norm_background_color: norm_background_color
+                    ColHeader:
+                        id: col_4
+                        text: '4'
+                        # norm_background_color: norm_background_color
+                    ColHeader:
+                        id: col_5
+                        text: '5'
+                        # norm_background_color: norm_background_color
+
+
+<ContrRep>:
+    part_name: 'part_name'
+    mtool_id: 'mtool_id'
+    operator: 'operator'
+    rows_layout: rows_layout
+    # dim_scroll: dim_scroll
+    BoxLayout:
+        orientation : 'horizontal'
+        size_hint_y : 1
+        BoxLayout:
+            ## levaya pustota
+        BoxLayout:
+            id: middle_layout
+            size_hint_x : None
+            width : "700sp"
+            spacing : "1sp"
+            padding : "1sp"
+            orientation: 'vertical'
+            BoxLayout:
+                size_hint_y: None
+                height: "5sp"
+            BoxLayout:
+                spacing : "1sp"
+                size_hint_y : None
+                height : "30sp"
+                canvas:
+                    Color:
+                        rgb: (0, 0, 0, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                BoxLayout:
+                    spacing : "1sp"
+                    canvas:
+                        Color:
+                            rgb: (0, 0, 0, 1)
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    BoxLayout:
+                        canvas:
+                            Color:
+                                rgb: norm_background_color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            text_size : self.size
+                            halign : "left"
+                            valign : "middle"
+                            color: 0,0,0,1
+                            text : " Parça adı: " + root.part_name
+                    BoxLayout:
+                        size_hint_x: None
+                        width: "87sp"
+                        canvas:
+                            Color:
+                                rgb: norm_background_color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            text_size : self.size
+                            halign : "left"
+                            valign : "middle"
+                            color: 0,0,0,1
+                            text : " Mak No: " + root.mtool_id
+                    BoxLayout:
+                        size_hint_x: None
+                        width: "211sp"
+                        canvas:
+                            Color:
+                                rgb: norm_background_color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            text_size : self.size
+                            halign : "left"
+                            valign : "middle"
+                            color: 0,0,0,1
+                            text : " Operator: " + root.operator
+            BoxLayout:
+                spacing : "1sp"
+                padding : "1sp"
+                size_hint_y : None
+                height : "30sp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            BoxLayout:
+                orientation: "vertical"
+                spacing: "2sp"
+                DimHeader:
+                SView:
+                    GridLayout:
+                        id: rows_layout
+                        cols: 1
+                        spacing: "1sp"
+                        size_hint_y: None
+                        height: self.minimum_height
+        BoxLayout:
+            ## pravaya pustota
+
+
+<SView@ScrollView>:
+    do_scroll_x: False
+    do_scroll_y: True
+    ##dodavleni canvas chtob scroll view ne vihodil za verhnuiu granicu roditelya!!!!!!!!!!!!!!!!
+    canvas.before:
+        StencilPush
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        StencilUse
+
+    canvas.after:
+        StencilUnUse
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        StencilPop
+
+
+<ColHeader>:
+    size_hint_x: None
+    width: "102sp"
+    text: '---'
+    n_b_color: [0.90,0.89,0.82,1]
+    canvas:
+        Color:
+            rgba: self.n_b_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    Label:
+        id: measure_instr
+        text_size : self.size
+        halign : "center"
+        valign : "middle"
+        color: 0,0,0,1
+        text : root.text
