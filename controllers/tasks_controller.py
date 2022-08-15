@@ -112,7 +112,6 @@ class TasksController():
             logger.info('')
             self.data_input.tasks_layout.clear_widgets()
             i = 1
-            print(arg.result())
             for task in arg.result()[0]:
                 if i % 2:
                     bg_color = [0.70, 0.89, 0.82, 1]

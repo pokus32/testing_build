@@ -46,9 +46,7 @@
 
 <HeaderBoxLayout@BoxLayout>:
 	size_hint_y : None
-	height : "51sp"
-	spacing : "2sp"
-	padding : "2sp"
+	height : "41sp"
 	orientation: 'horizontal'
 	date_time: '---'
 	canvas:
@@ -65,10 +63,10 @@
 	    	color: (0, 0, 0, 1)
 	Label:
 		text: root.date_time
-		font_size: "20sp"
+		font_size: "17sp"
 		color: (0, 0, 0, 1)
 		size_hint_x: None
-		width: "111sp"
+		width: "99sp"
 
 <SView@ScrollView>:
     do_scroll_x: False
@@ -176,7 +174,6 @@
 			text: 'İş Emri çikart'
 			halign: "center"
 			tool_id: root.tool_id
-		Button:
 		Button:
 			text: ''
 			tool_id: root.tool_id
