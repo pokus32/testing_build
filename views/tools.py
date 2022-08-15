@@ -25,7 +25,7 @@ class ToolsScreen(BoxLayout):
         logger.info('')
         self.tools_controller.update_refreshable_interface_info()
 
-    def show_pakets_list(self):
+    def show_packets_list(self):
         logger.info('')
         self.tools_controller.select_packet()
 

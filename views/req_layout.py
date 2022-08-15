@@ -393,8 +393,8 @@ class ReqLayout(BoxLayout):
         self.media_pop = Popup(title = '---',
                       content = m_screen, 
                       size_hint =(None, None), 
-                      size =("480sp", "500sp"),
+                      size =("480dp", "500dp"),
                       title_color = [1,0,0,1],
-                      title_size = "20sp",
+                      title_size = "20dp",
                       auto_dismiss=True)
         self.media_pop.open()

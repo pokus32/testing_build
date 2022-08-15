@@ -9,12 +9,12 @@
 
 
 <TaskView>:
-    spacing : "1sp"
+    spacing : "1dp"
     size_hint_y : None
     height : self.minimum_height
     orientation: 'horizontal'
     size_hint_y : None
-    height : "31sp"
+    height : "31dp"
     task_id: '---'
     ppap_id: '---'
     quantity: '---'
@@ -30,7 +30,7 @@
             pos: self.pos
     BoxLayout:
         size_hint_x: None
-        width: "91sp"
+        width: "91dp"
         canvas:
             Color:
                 rgb: root.norm_background_color
@@ -62,7 +62,7 @@
             valign : "middle"
     BoxLayout:
         size_hint_x: None
-        width: "89sp"
+        width: "89dp"
         canvas:
             Color:
                 rgb: root.norm_background_color
@@ -78,7 +78,7 @@
             valign : "middle"
     BoxLayout:
         size_hint_x: None
-        width: "113sp"
+        width: "113dp"
         canvas:
             Color:
                 rgb: root.norm_background_color
@@ -94,7 +94,7 @@
             valign : "middle"
     BoxLayout:
         size_hint_x: None
-        width: "83sp"
+        width: "83dp"
         canvas:
             Color:
                 rgb: root.norm_background_color
@@ -103,7 +103,7 @@
                 pos: self.pos
         ToggleButton:
             size_hint_x: None
-            width: "31sp"
+            width: "31dp"
             id: remove_bttn
             text: '√'
             font_size : '13sp'
@@ -123,7 +123,7 @@
 
 <HeaderTask>:
     size_hint_y : None
-    height : "47sp"
+    height : "47dp"
     canvas:
         Color:
             rgb: (0, 0, 0, 1)
@@ -131,7 +131,7 @@
             size: self.size
             pos: self.pos
     BoxLayout:
-        spacing : "1sp"
+        spacing : "1dp"
         canvas:
             Color:
                 rgb: (0, 0, 0, 1)
@@ -140,7 +140,7 @@
                 pos: self.pos
         BoxLayout:
             size_hint_x: None
-            width: "91sp"
+            width: "91dp"
             canvas:
                 Color:
                     rgb: root.norm_background_color
@@ -170,7 +170,7 @@
                 text : "PPAP\nadı/kodu"
         BoxLayout:
             size_hint_x: None
-            width: "89sp"
+            width: "89dp"
             canvas:
                 Color:
                     rgb: root.norm_background_color
@@ -186,7 +186,7 @@
                 text : "Siparış\nadeti"
         BoxLayout:
             size_hint_x: None
-            width: "113sp"
+            width: "113dp"
             canvas:
                 Color:
                     rgb: root.norm_background_color
@@ -202,7 +202,7 @@
                 text : "Teslim\ntarihi"
         BoxLayout:
             size_hint_x: None
-            width: "30sp"
+            width: "30dp"
             canvas:
                 Color:
                     rgb: norm_background_color
@@ -215,7 +215,7 @@
                 color: 0,0,0,1
         BoxLayout:
             size_hint_x: None
-            width: "52sp"
+            width: "52dp"
             canvas:
                 Color:
                     rgb: norm_background_color
@@ -240,34 +240,34 @@
         BoxLayout:
             id: middle_layout
             size_hint_x : None
-            width : "700sp"
-            spacing : "1sp"
-            padding : "1sp"
+            width : "700dp"
+            spacing : "1dp"
+            padding : "1dp"
             orientation: 'vertical'
             BoxLayout:
                 size_hint_y: None
-                height: "11sp"
+                height: "11dp"
             TaskInputForm:
                 id: task_input_form
                 size_hint_y: None
-                height: "101sp"
+                height: "101dp"
                 prnt: root
             BoxLayout:
                 orientation: "vertical"
                 HeaderTask:
                 BoxLayout:
                     size_hint_y: None
-                    height: "1sp"
+                    height: "1dp"
                 TasksSView:
                     GridLayout:
                         id: tasks_layout
                         cols: 1
-                        spacing: "1sp"
+                        spacing: "1dp"
                         size_hint_y: None
                         height: self.minimum_height
                 BoxLayout:
                     size_hint_y: None
-                    height: "1sp"
+                    height: "1dp"
                 TaskButtons:
                     parent: root
         BoxLayout:
@@ -294,9 +294,9 @@
 
 
 <FormButtons@BoxLayout>:
-    spacing : "1sp"
+    spacing : "1dp"
     size_hint_y : None
-    height : "30sp"
+    height : "30dp"
     parent: root
     canvas:
         Color:
@@ -306,7 +306,7 @@
             pos: self.pos
     BoxLayout:
         size_hint_x: None
-        width: "120sp"
+        width: "120dp"
         canvas:
             Color:
                 rgb: norm_background_color
@@ -318,7 +318,7 @@
             on_release: root.parent.clear_form()
     BoxLayout:
         size_hint_x: None
-        width: "70sp"
+        width: "70dp"
         canvas:
             Color:
                 rgb: norm_background_color
@@ -331,7 +331,7 @@
     BoxLayout:
     BoxLayout:
         size_hint_x: None
-        width: "100sp"
+        width: "100dp"
         canvas:
             Color:
                 rgb: norm_background_color
@@ -344,9 +344,9 @@
 
 
 <TaskButtons@BoxLayout>:
-    spacing : "1sp"
+    spacing : "1dp"
     size_hint_y : None
-    height : "30sp"
+    height : "30dp"
     parent: root
     canvas:
         Color:
@@ -357,7 +357,7 @@
     BoxLayout:
     BoxLayout:
         size_hint_x: None
-        width: "70sp"
+        width: "70dp"
         canvas:
             Color:
                 rgb: norm_background_color
@@ -369,7 +369,7 @@
             on_release: root.parent.remove_task()
     BoxLayout:
         size_hint_x: None
-        width: "100sp"
+        width: "100dp"
         canvas:
             Color:
                 rgb: norm_background_color
@@ -390,11 +390,11 @@
     rows_layout: rows_layout
     set_part_name_id: set_part_name_id
     orientation: "vertical"
-    spacing: "1sp"
+    spacing: "1dp"
     BoxLayout:
-        spacing : "1sp"
+        spacing : "1dp"
         size_hint_y : None
-        height : "30sp"
+        height : "30dp"
         canvas:
             Color:
                 rgb: (0, 0, 0, 1)
@@ -402,7 +402,7 @@
                 size: self.size
                 pos: self.pos
         BoxLayout:
-            spacing : "1sp"
+            spacing : "1dp"
             canvas:
                 Color:
                     rgb: (0, 0, 0, 1)
@@ -411,7 +411,7 @@
                     pos: self.pos
             BoxLayout:
                 size_hint_x: None
-                width: "101sp"
+                width: "101dp"
                 canvas:
                     Color:
                         rgb: norm_background_color
@@ -426,7 +426,7 @@
                     text : "İş emri No: "
             BoxLayout:
                 size_hint_x: None
-                width: "93sp"
+                width: "93dp"
                 canvas:
                     Color:
                         rgb: norm_background_color
@@ -441,7 +441,7 @@
                     write_tab: False
             BoxLayout:
                 size_hint_x: None
-                width: "141sp"
+                width: "141dp"
                 canvas:
                     Color:
                         rgb: norm_background_color
@@ -471,7 +471,7 @@
                     write_tab: False
             BoxLayout:
                 size_hint_x: None
-                width: "31sp"
+                width: "31dp"
                 canvas:
                     Color:
                         rgb: norm_background_color
@@ -484,9 +484,9 @@
                     on_release: root.select_ppap()
     BoxLayout:
         id: second_row
-        spacing : "1sp"
+        spacing : "1dp"
         size_hint_y : None
-        height : "30sp"
+        height : "30dp"
         canvas:
             Color:
                 rgb: (0, 0, 0, 1)
@@ -494,7 +494,7 @@
                 size: self.size
                 pos: self.pos
         BoxLayout:
-            spacing : "1sp"
+            spacing : "1dp"
             canvas:
                 Color:
                     rgb: (0, 0, 0, 1)
@@ -503,7 +503,7 @@
                     pos: self.pos
             BoxLayout:
                 size_hint_x: None
-                width: "101sp"
+                width: "101dp"
                 canvas:
                     Color:
                         rgb: norm_background_color
@@ -518,7 +518,7 @@
                     text : "Siparış adeti: "
             BoxLayout:
                 size_hint_x: None
-                width: "93sp"
+                width: "93dp"
                 canvas:
                     Color:
                         rgb: norm_background_color
@@ -534,7 +534,7 @@
                     write_tab: False
             BoxLayout:
                 size_hint_x: None
-                width: "121sp"
+                width: "121dp"
                 canvas:
                     Color:
                         rgb: norm_background_color
@@ -566,12 +566,12 @@
         # height: 0.2
         BoxLayout:
             size_hint_y: None
-            height: "2sp"
+            height: "2dp"
         TasksSView:
             GridLayout:
                 id: rows_layout
                 cols: 1
-                spacing: "1sp"
+                spacing: "1dp"
                 size_hint_y: None
                 height: self.minimum_height
     FormButtons:
@@ -581,7 +581,7 @@
 <OpenImage>:
     rows:3
     id:my_widget
-    spacing: "2sp"
+    spacing: "2dp"
     #FileChooserListView:
     FileChooserIconView:
         id:filechooser
@@ -593,17 +593,17 @@
         source:""
     BoxLayout:
         size_hint_y: None
-        height: "37sp"
+        height: "37dp"
         BoxLayout:
         Button:
             text: 'Tamam'
             size_hint_x: None
-            width: "100sp"
+            width: "100dp"
             on_release: root.get_file_path()
         Button:
             text: 'Iptal'
             size_hint_x: None
-            width: "100sp"
+            width: "100dp"
             on_release: root.close_popup()
 
 
@@ -615,26 +615,26 @@
         GridLayout:
             id: ppaps_layout
             cols: 1
-            spacing: "1sp"
+            spacing: "1dp"
             size_hint_y: None
             height: self.minimum_height
     BoxLayout:
         size_hint_y: None
-        height: "25sp"
+        height: "25dp"
         orientation: "horizontal"
         BoxLayout:
         Button:
             id: cancel_button
             size_hint_x: None
-            width: "100sp"
+            width: "100dp"
             text: 'Iptal'
 
 
 <SinglePPAP>:
     aplay_button: aplay_button
-    spacing: "1sp"
+    spacing: "1dp"
     size_hint_y: None
-    height: "27sp"
+    height: "27dp"
     BoxLayout
         canvas:
             Color:
@@ -647,6 +647,6 @@
             color: 0,0,0,1
     Button:
         size_hint_x: None
-        width: "27sp"
+        width: "27dp"
         text: '>>'
         id: aplay_button

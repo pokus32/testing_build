@@ -21,8 +21,8 @@
 	GridLayout:
 		id: main_layout
 		rows: 3
-		spacing: "1sp"
-		padding: "1sp"
+		spacing: "1dp"
+		padding: "1dp"
 		canvas:
 	        Color:
 	            rgba: [0.1, 0.1, 0.1, 0.1]#(0, 0, 0.1, 0)
@@ -46,7 +46,7 @@
 
 <HeaderBoxLayout@BoxLayout>:
 	size_hint_y : None
-	height : "41sp"
+	height : "41dp"
 	orientation: 'horizontal'
 	date_time: '---'
 	canvas:
@@ -59,14 +59,14 @@
     	size_hint_x: 1
 	    Label:
 	    	text: 'ÜRETİM'
-	    	font_size: "29sp"
+	    	font_size: "29dp"
 	    	color: (0, 0, 0, 1)
 	Label:
 		text: root.date_time
-		font_size: "17sp"
+		font_size: "17dp"
 		color: (0, 0, 0, 1)
 		size_hint_x: None
-		width: "99sp"
+		width: "99dp"
 
 <SView@ScrollView>:
     do_scroll_x: False
@@ -90,8 +90,8 @@
 	orientation: "lr-tb"
 	rows: 2
 	size_hint_y : None
-    height : "177sp"
-    spacing : "1sp"
+    height : "177dp"
+    spacing : "1dp"
 	data_layout: data_layout
 	select_task: select_task
 	detach_task: detach_task
@@ -127,8 +127,8 @@
 	GridLayout:
 		id: data_layout
 	    #size_hint_y : None
-	    #height : "99sp"
-	    spacing : "1sp"
+	    #height : "99dp"
+	    spacing : "1dp"
 	    # padding : 1
 	    # orientation: 'horizontal'
 	    cols: 4
@@ -137,7 +137,7 @@
 		FirstColGridLayout:
 			id: first_column
 			size_hint_x: None
-			width: "61sp"
+			width: "61dp"
 			text_color:  root.text_color
 			bg_color: root.bg_color
 			tool_id: root.tool_id
@@ -162,7 +162,7 @@
 	FourthColGridLayout:
 		bg_color: root.bg_color
 		size_hint_y: None
-		height: "29sp"
+		height: "29dp"
 		rows: 1
 		Button:
 			id: select_task
@@ -197,14 +197,14 @@
 	Button:
 		id: alarm_button
 		size_hint_y: None
-		height: "35sp"
+		height: "35dp"
 		text: 'ALARM'
 		background_color: alarm_color_red_off
 		# size_hint_x: None
 	Button:
 		id: m1_button
 		size_hint_y: None
-		height: "35sp"
+		height: "35dp"
 		text: 'M1'
 		background_color: m1_off_bk_col
 		tool_id: root.tool_id
@@ -328,15 +328,15 @@
 			height: self.minimum_height
 	BoxLayout:
 		size_hint_y: None
-		height: "35sp"
+		height: "35dp"
 		orientation: "horizontal"
 		BoxLayout:
 		Button:
 			id: cancel_button
 			size_hint_y: None
-			height: "31sp"
+			height: "31dp"
 			size_hint_x: None
-			width: "100sp"
+			width: "100dp"
 			text: 'Iptal'
 
 <ScrolView@ScrollView>:
@@ -361,7 +361,7 @@
 	task_to_m_tool: task_to_m_tool
 	spacing: 1
 	size_hint_y: None
-	height: "27sp"
+	height: "27dp"
 	BoxLayout
 		canvas:
 	        Color:
@@ -374,7 +374,7 @@
 			color: 0,0,0,1
 	Button:
 		size_hint_x: None
-		width: "27sp"
+		width: "27dp"
 		text: '>>'
 		id: task_to_m_tool
 
@@ -386,9 +386,9 @@
 	Label:
 		id: pack_lbl
 		size_hint_y: None
-		height: "41sp"
+		height: "41dp"
 		text: ""
-		font_size: "21sp"
+		font_size: "21dp"
 
 	GridLayout:
 		rows: 4
@@ -442,7 +442,7 @@
 		id: cancel_button
 		text: "İptal"
 		size_hint_y: None
-		height: "37sp"
+		height: "37dp"
 
 <M1CausesList>:
     main_layout: main_layout
@@ -457,19 +457,19 @@
             height: self.minimum_height
     BoxLayout:
         size_hint_y: None
-        height: "25sp"
+        height: "25dp"
         orientation: "horizontal"
         BoxLayout:
         Button:
             id: cancel_button
             size_hint_x: None
-            width: "100sp"
+            width: "100dp"
             text: 'Kapat'
 
 <SingleM1Couse>:
     spacing: 1
     size_hint_y: None
-    height: "27sp"
+    height: "27dp"
     BoxLayout
         canvas:
             Color:

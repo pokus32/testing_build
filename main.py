@@ -56,8 +56,9 @@ class RootWidget(BoxLayout):
     def __init__(self, **kwargs):
         super(RootWidget, self).__init__(**kwargs)
 
-    def open_tab(self, tab_id=1):
-        self.tabbed_panel.switch_to(self.tabbed_panel.tab_list[tab_id])
+    def open_tab(self, tab_id=0):
+        tabs = list(reversed(self.tabbed_panel.tab_list))
+        self.tabbed_panel.switch_to(tabs[tab_id])
 
 
 class QCApp(App):

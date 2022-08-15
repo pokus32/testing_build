@@ -158,9 +158,9 @@ class TasksController():
             self.ppaps_pop = Popup(title='Bir PPAP seç',
                                    content=ppaps_list,
                                    size_hint=(None, None),
-                                   size=("500sp", "400sp"),
+                                   size=("500dp", "400dp"),
                                    title_color=[1, 0, 0, 1],
-                                   title_size="20sp",
+                                   title_size="20dp",
                                    # auto_dismiss=False
                                    )
             ppaps_list.cancel_button.bind(on_release=self.ppaps_pop.dismiss)

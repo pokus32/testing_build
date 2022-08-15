@@ -117,9 +117,9 @@ class ToolsController():
             m1_causes = self.popup(title='M1 Sebebleri:',
                                    content=m1_causes_list_widget,
                                    size_hint=(None, None),
-                                   size=("300sp", "400sp"),
+                                   size=("300dp", "400dp"),
                                    title_color=[1, 0, 0, 1],
-                                   title_size="20sp",
+                                   title_size="20dp",
                                    # auto_dismiss=False
                                    )
             m1_causes_list_widget.cancel_button.bind(on_release=m1_causes.dismiss)
@@ -131,7 +131,7 @@ class ToolsController():
 
     def open_cr_scr(self, arg):
         logger.info('')
-        self.app.rt_wdt.open_tab(2)
+        self.app.rt_wdt.open_tab(1)
         asyncio.gather(asyncio.ensure_future(
             self.cr_controller.fill_view(arg.part_name, arg.tool_id, arg.operator)
         ), return_exceptions=False)
@@ -156,9 +156,9 @@ class ToolsController():
             self.tasks_pop = self.popup(title=f'MakNo{arg.tool_id} için, bir emir seç.',
                                         content=tasks_list,
                                         size_hint=(None, None),
-                                        size=("450sp", "500sp"),
+                                        size=("450dp", "500dp"),
                                         title_color=[1, 0, 0, 1],
-                                        title_size="20sp",
+                                        title_size="20dp",
                                         # auto_dismiss=False
                                         )
             tasks_list.cancel_button.bind(on_release=self.tasks_pop.dismiss)

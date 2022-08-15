@@ -10,9 +10,9 @@
 
 
 <DimHeader>:
-    spacing : "1sp"
+    spacing : "1dp"
     size_hint_y : None
-    height : "47sp"
+    height : "47dp"
     dim_n: dim_n
     nom: nom
     tol: tol
@@ -22,7 +22,7 @@
     col_layout: col_layout
     norm_background_color: [0.90,0.89,0.82,1]
     BoxLayout:
-        spacing : "1sp"
+        spacing : "1dp"
         canvas:
             Color:
                 rgb: (0, 0, 0, 1)
@@ -30,7 +30,7 @@
                 size: self.size
                 pos: self.pos
         BoxLayout:
-            spacing : "1sp"
+            spacing : "1dp"
             canvas:
                 Color:
                     rgb: (0, 0, 0, 1)
@@ -40,7 +40,7 @@
             BoxLayout:
                 id: ref_n_layout
                 size_hint_x: None
-                width: "47sp"
+                width: "47dp"
                 canvas:
                     Color:
                         rgba: root.norm_background_color
@@ -56,7 +56,7 @@
                     text : "REF No"
             BoxLayout:
                 size_hint_x: None
-                width: "67sp"
+                width: "67dp"
                 canvas:
                     Color:
                         rgba: root.norm_background_color
@@ -72,7 +72,7 @@
                     text : "Ölçü"
             BoxLayout:
                 size_hint_x: None
-                width: "67sp"
+                width: "67dp"
                 canvas:
                     Color:
                         rgba: root.norm_background_color
@@ -88,7 +88,7 @@
                     text : "Üst\nAlt"
             GridLayout:
                 rows: 2
-                spacing: "1sp"
+                spacing: "1dp"
                 id: col_main_header
                 BoxLayout:
                     id: main_header
@@ -97,7 +97,7 @@
                         size_hint_x: 1
                         norm_background_color: root.norm_background_color
                 BoxLayout:
-                    spacing: "1sp"
+                    spacing: "1dp"
                     id: col_layout
                     ColHeader:
                         id: col_1
@@ -130,17 +130,17 @@
     BoxLayout:
         id: middle_layout
         size_hint_x : None
-        width : "700sp"
-        spacing : "1sp"
-        padding : "1sp"
+        width : "700dp"
+        spacing : "1dp"
+        padding : "1dp"
         orientation: 'vertical'
         BoxLayout:
             size_hint_y: None
-            height: "5sp"
+            height: "5dp"
         BoxLayout:
-            spacing : "1sp"
+            spacing : "1dp"
             size_hint_y : None
-            height : "30sp"
+            height : "30dp"
             canvas:
                 Color:
                     rgb: (0, 0, 0, 1)
@@ -148,7 +148,7 @@
                     size: self.size
                     pos: self.pos
             BoxLayout:
-                spacing : "1sp"
+                spacing : "1dp"
                 canvas:
                     Color:
                         rgb: (0, 0, 0, 1)
@@ -170,7 +170,7 @@
                         text : " Parça adı: " + root.part_name
                 BoxLayout:
                     size_hint_x: None
-                    width: "87sp"
+                    width: "87dp"
                     canvas:
                         Color:
                             rgb: norm_background_color
@@ -185,7 +185,7 @@
                         text : " Mak No: " + root.mtool_id
                 BoxLayout:
                     size_hint_x: None
-                    width: "211sp"
+                    width: "211dp"
                     canvas:
                         Color:
                             rgb: norm_background_color
@@ -199,10 +199,10 @@
                         color: 0,0,0,1
                         text : " Operator: " + root.operator
         BoxLayout:
-            spacing : "1sp"
-            padding : "1sp"
+            spacing : "1dp"
+            padding : "1dp"
             size_hint_y : None
-            height : "30sp"
+            height : "30dp"
             canvas:
                 Color:
                     rgb: norm_background_color
@@ -211,13 +211,13 @@
                     pos: self.pos
         BoxLayout:
             orientation: "vertical"
-            spacing: "2sp"
+            spacing: "2dp"
             DimHeader:
             SView:
                 GridLayout:
                     id: rows_layout
                     cols: 1
-                    spacing: "1sp"
+                    spacing: "1dp"
                     size_hint_y: None
                     height: self.minimum_height
 
@@ -243,7 +243,7 @@
 
 <ColHeader>:
     size_hint_x: None
-    width: "102sp"
+    width: "102dp"
     text: '---'
     n_b_color: [0.90,0.89,0.82,1]
     canvas:
