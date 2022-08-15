@@ -81,7 +81,7 @@ class QCApp(App):
     def build(self):
         logger.info('QCApp.build')
         self.title = 'ÜRETİM SORUMLUSU'
-        Window.size = (720, 1280)
+        # Window.size = (720, 1280)
 
         return self.rt_wdt
 

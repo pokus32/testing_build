@@ -1,6 +1,7 @@
 import asyncio
 from datetime import datetime
 
+from kivy.core.window import Window
 from kivy.uix.popup import Popup
 from loguru import logger
 from views.tools import TasksList, OneRowGridLayout
@@ -141,6 +142,7 @@ class ToolsController():
         tasks_list.tasks_layout.clear_widgets()
 
         async def show_popup():
+            print('Window.size', Window.size)
             for task in await self.model.get_tasks_fields(['id', 'ppap.part.part_name']):
                 if not task:
                     continue
@@ -154,7 +156,7 @@ class ToolsController():
             self.tasks_pop = self.popup(title=f'MakNo{arg.tool_id} için, bir emir seç.',
                                         content=tasks_list,
                                         size_hint=(None, None),
-                                        size=("500sp", "300sp"),
+                                        size=("450sp", "500sp"),
                                         title_color=[1, 0, 0, 1],
                                         title_size="20sp",
                                         # auto_dismiss=False
