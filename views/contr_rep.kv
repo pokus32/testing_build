@@ -86,22 +86,6 @@
                     valign : "middle"
                     color: 0,0,0,1
                     text : "Üst\nAlt"
-            # BoxLayout:
-            #     size_hint_x: None
-            #     width: 97
-            #     canvas:
-            #         Color:
-            #             rgba: root.norm_background_color
-            #         Rectangle:
-            #             size: self.size
-            #             pos: self.pos
-            #     Label:
-            #         id: measure_instr
-            #         text_size : self.size
-            #         halign : "center"
-            #         valign : "middle"
-            #         color: 0,0,0,1
-            #         text : "Ölçu Aleti"
             GridLayout:
                 rows: 2
                 spacing: "1sp"
@@ -144,24 +128,27 @@
     rows_layout: rows_layout
     # dim_scroll: dim_scroll
     BoxLayout:
-        orientation : 'horizontal'
-        size_hint_y : 1
+        id: middle_layout
+        size_hint_x : None
+        width : "700sp"
+        spacing : "1sp"
+        padding : "1sp"
+        orientation: 'vertical'
         BoxLayout:
-            ## levaya pustota
+            size_hint_y: None
+            height: "5sp"
         BoxLayout:
-            id: middle_layout
-            size_hint_x : None
-            width : "700sp"
             spacing : "1sp"
-            padding : "1sp"
-            orientation: 'vertical'
-            BoxLayout:
-                size_hint_y: None
-                height: "5sp"
+            size_hint_y : None
+            height : "30sp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
             BoxLayout:
                 spacing : "1sp"
-                size_hint_y : None
-                height : "30sp"
                 canvas:
                     Color:
                         rgb: (0, 0, 0, 1)
@@ -169,80 +156,70 @@
                         size: self.size
                         pos: self.pos
                 BoxLayout:
-                    spacing : "1sp"
                     canvas:
                         Color:
-                            rgb: (0, 0, 0, 1)
+                            rgb: norm_background_color
                         Rectangle:
                             size: self.size
                             pos: self.pos
-                    BoxLayout:
-                        canvas:
-                            Color:
-                                rgb: norm_background_color
-                            Rectangle:
-                                size: self.size
-                                pos: self.pos
-                        Label:
-                            text_size : self.size
-                            halign : "left"
-                            valign : "middle"
-                            color: 0,0,0,1
-                            text : " Parça adı: " + root.part_name
-                    BoxLayout:
-                        size_hint_x: None
-                        width: "87sp"
-                        canvas:
-                            Color:
-                                rgb: norm_background_color
-                            Rectangle:
-                                size: self.size
-                                pos: self.pos
-                        Label:
-                            text_size : self.size
-                            halign : "left"
-                            valign : "middle"
-                            color: 0,0,0,1
-                            text : " Mak No: " + root.mtool_id
-                    BoxLayout:
-                        size_hint_x: None
-                        width: "211sp"
-                        canvas:
-                            Color:
-                                rgb: norm_background_color
-                            Rectangle:
-                                size: self.size
-                                pos: self.pos
-                        Label:
-                            text_size : self.size
-                            halign : "left"
-                            valign : "middle"
-                            color: 0,0,0,1
-                            text : " Operator: " + root.operator
-            BoxLayout:
-                spacing : "1sp"
-                padding : "1sp"
-                size_hint_y : None
-                height : "30sp"
-                canvas:
-                    Color:
-                        rgb: norm_background_color
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-            BoxLayout:
-                orientation: "vertical"
-                spacing: "2sp"
-                DimHeader:
-                SView:
-                    GridLayout:
-                        id: rows_layout
-                        cols: 1
-                        spacing: "1sp"
-                        size_hint_y: None
-                        height: self.minimum_height
+                    Label:
+                        text_size : self.size
+                        halign : "left"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : " Parça adı: " + root.part_name
+                BoxLayout:
+                    size_hint_x: None
+                    width: "87sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "left"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : " Mak No: " + root.mtool_id
+                BoxLayout:
+                    size_hint_x: None
+                    width: "211sp"
+                    canvas:
+                        Color:
+                            rgb: norm_background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text_size : self.size
+                        halign : "left"
+                        valign : "middle"
+                        color: 0,0,0,1
+                        text : " Operator: " + root.operator
         BoxLayout:
-            ## pravaya pustota
+            spacing : "1sp"
+            padding : "1sp"
+            size_hint_y : None
+            height : "30sp"
+            canvas:
+                Color:
+                    rgb: norm_background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            orientation: "vertical"
+            spacing: "2sp"
+            DimHeader:
+            SView:
+                GridLayout:
+                    id: rows_layout
+                    cols: 1
+                    spacing: "1sp"
+                    size_hint_y: None
+                    height: self.minimum_height
 
 
 <SView@ScrollView>:

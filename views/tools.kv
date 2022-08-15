@@ -57,16 +57,11 @@
         Rectangle:
             size: self.size
             pos: self.pos
-    AsyncImage:
-        id: eologo
-        size_hint_x : None
-        width : "100sp"
-        source: 'images/eologo_bej.png'
     BoxLayout:
     	size_hint_x: 1
 	    Label:
 	    	text: 'ÜRETİM SORUMLUSU'
-	    	font_size: "40sp"
+	    	font_size: "29sp"
 	    	color: (0, 0, 0, 1)
 	Label:
 		text: root.date_time
@@ -97,7 +92,7 @@
 	orientation: "lr-tb"
 	rows: 2
 	size_hint_y : None
-    height : "127sp"
+    height : "177sp"
     spacing : "1sp"
 	data_layout: data_layout
 	select_task: select_task
@@ -133,8 +128,8 @@
     nok: 0
 	GridLayout:
 		id: data_layout
-	    size_hint_y : None
-	    height : "99sp"
+	    #size_hint_y : None
+	    #height : "99sp"
 	    spacing : "1sp"
 	    # padding : 1
 	    # orientation: 'horizontal'
@@ -144,26 +139,19 @@
 		FirstColGridLayout:
 			id: first_column
 			size_hint_x: None
-			width: "81sp"
+			width: "61sp"
 			text_color:  root.text_color
 			bg_color: root.bg_color
 			tool_id: root.tool_id
 
-			first_row: " Mak No: " + root.tool_id
+			first_row: " Mak\nNo:\n" + root.tool_id
 	    SecondColGridLayout:
 	    	text_color:  root.text_color
 	    	bg_color: root.bg_color
-
 			first_row: ' İş emri No: ' + root.task_id + '/' + root.task_parts_count
 			second_row: ' Parça adı: ' + root.part_name
 			third_row: ' Malzeme: ' + root.material
 			fourth_row: ' Kasa No/Parça adeti: '+ root.packet_id  + '/' + root.part_count
-			
-			# m1: root.m1
-		 #    red: root.red
-		 #    yellow: root.yellow
-		 #    green: root.green
-		 #    nok: root.nok
 	    ThirdColGridLayout:
 	    	text_color:  root.text_color
 
@@ -175,6 +163,8 @@
 			bg_color: root.bg_color
 	FourthColGridLayout:
 		bg_color: root.bg_color
+		size_hint_y: None
+		height: 29
 		rows: 1
 		Button:
 			id: select_task
@@ -187,10 +177,9 @@
 			halign: "center"
 			tool_id: root.tool_id
 		Button:
+		Button:
 			text: ''
 			tool_id: root.tool_id
-		Button:
-		Button:
 		Button:
 			id: open_cr_scr
 			text: 'KR'
@@ -210,12 +199,15 @@
 		bg_color: root.bg_color
 	Button:
 		id: alarm_button
+		size_hint_y: None
+		height: 35
 		text: 'ALARM'
 		background_color: alarm_color_red_off
 		# size_hint_x: None
-		# width: 35
 	Button:
 		id: m1_button
+		size_hint_y: None
+		height: 35
 		text: 'M1'
 		background_color: m1_off_bk_col
 		tool_id: root.tool_id
