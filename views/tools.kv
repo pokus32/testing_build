@@ -60,7 +60,7 @@
     BoxLayout:
     	size_hint_x: 1
 	    Label:
-	    	text: 'ÜRETİM SORUMLUSU'
+	    	text: 'ÜRETİM'
 	    	font_size: "29sp"
 	    	color: (0, 0, 0, 1)
 	Label:
@@ -164,7 +164,7 @@
 	FourthColGridLayout:
 		bg_color: root.bg_color
 		size_hint_y: None
-		height: 29
+		height: "29sp"
 		rows: 1
 		Button:
 			id: select_task
@@ -200,14 +200,14 @@
 	Button:
 		id: alarm_button
 		size_hint_y: None
-		height: 35
+		height: "35sp"
 		text: 'ALARM'
 		background_color: alarm_color_red_off
 		# size_hint_x: None
 	Button:
 		id: m1_button
 		size_hint_y: None
-		height: 35
+		height: "35sp"
 		text: 'M1'
 		background_color: m1_off_bk_col
 		tool_id: root.tool_id
