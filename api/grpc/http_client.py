@@ -12,10 +12,12 @@ import json
 
 MAX_MESSAGE_LENGTH = 40194304
 
+# SERVER = '[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]'
+SERVER = '[202:af01:395e:4fcc:30f3:5433:f878:6e35]'
 
 class HttpClient:
     """ grpc client for robo server """
-    api_url: str = 'http://[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]:5000/api/v1'
+    api_url: str = f'http://{SERVER}:5000/api/v1'
 
     def __init__(self):
         logger.info('')
@@ -38,14 +40,13 @@ class HttpClient:
     #             else:
     #                 logger.warning(await resp.text())
     #                 return {}  # ERROR should be returned in JSON format
-    @staticmethod
-    async def get_tasks() -> list:
+    async def get_tasks(self) -> list:
         logger.warning('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "get_tasks"}
 
         def req() -> requests.Response:
-            res = requests.post('http://[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]:5000/api/v1/get_tasks',
+            res = requests.post(f'{self.api_url}/get_tasks',
                                data='---')
             result = res.json().get('data', b'')
             print(type(result))
@@ -64,41 +65,38 @@ class HttpClient:
     #         arg = robo_srv_pb2.empty_request()
     #         res = await aio_stub.get_tasks(arg)
     #         return pickle.loads(res.tasks_data)
-    @staticmethod
-    async def get_tasks_fields(fields: list) -> list:
+    async def get_tasks_fields(self, fields: list) -> list:
         logger.trace('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "get_tasks_fields"}
         print(fields)
 
         def req() -> requests.Response:
-            res = requests.post('http://[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]:5000/api/v1/get_tasks_fields',
+            res = requests.post(f'{self.api_url}/get_tasks_fields',
                                 data=json.dumps({'fields': fields}))
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
 
-    @staticmethod
-    async def assign_task_to_mtool(tool_id: str, task_id: str):
+    async def assign_task_to_mtool(self, tool_id: str, task_id: str):
         logger.trace('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "assign_task_to_mtool"}
 
         def req() -> requests.Response:
-            res = requests.post('http://[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]:5000/api/v1/assign_task_to_mtool',
+            res = requests.post(f'{self.api_url}/assign_task_to_mtool',
                                 data=json.dumps({'tool_id': tool_id, 'task_id': task_id}))
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
 
-    @staticmethod
-    async def remove_task_from_mtool(tool_id: str) -> bool:
+    async def remove_task_from_mtool(self, tool_id: str) -> bool:
         logger.trace('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "remove_task_from_mtool"}
 
         def req() -> requests.Response:
-            res = requests.post('http://[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]:5000/api/v1/remove_task_from_mtool',
+            res = requests.post(f'{self.api_url}/remove_task_from_mtool',
                                 data=json.dumps({'tool_id': tool_id}))
             return res.json().get('data', [])
 
@@ -118,11 +116,10 @@ class HttpClient:
     #         arg.task_id = task_id
     #         response = stub.remove_task(arg)
     #         return response.result
-    @staticmethod
-    def get_tools_ids() -> dict:
+    def get_tools_ids(self) -> dict:
         logger.info('')
         params = {"method": "get_tools_ids"}
-        res = requests.post('http://[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]:5000/api/v1/get_tools_ids', json=params)
+        res = requests.post(f'{self.api_url}/get_tools_ids', json=params)
         return res.json().get('data', [])
 
     #
@@ -139,42 +136,39 @@ class HttpClient:
     #         response = stub.get_tool_info(arg)
     #         res = dict(response.tool_data)
     #         return [res, response.img_data]
-    @staticmethod
-    async def get_tool_refreshable_info(t_id: str) -> dict:
+    async def get_tool_refreshable_info(self, t_id: str) -> dict:
         logger.trace('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "get_tools_ids"}
 
         def req() -> requests.Response:
-            res = requests.post('http://[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]:5000/api/v1/get_tool_refreshable_info',
+            res = requests.post(f'{self.api_url}/get_tool_refreshable_info',
                                 data=json.dumps({'t_id': t_id}))
             return res.json()
 
         return await asyncio.create_task(asyncio.to_thread(req))
 
-    @staticmethod
-    async def get_ppaps_fields(fields: list) -> list:
+    async def get_ppaps_fields(self, fields: list) -> list:
         logger.trace('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "get_ppaps_fields"}
         print(fields)
 
         def req() -> requests.Response:
-            res = requests.post('http://[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]:5000/api/v1/get_ppaps_fields',
+            res = requests.post(f'{self.api_url}/get_ppaps_fields',
                                 data=json.dumps({'fields': fields}))
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
 
-    @staticmethod
-    async def ins_update_task(task_data: dict) -> list:
+    async def ins_update_task(self, task_data: dict) -> list:
         logger.trace('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "ins_update_task"}
         print(task_data)
 
         def req() -> requests.Response:
-            res = requests.post('http://[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]:5000/api/v1/ins_update_task',
+            res = requests.post(f'{self.api_url}/ins_update_task',
                                 data=json.dumps({'task_data': task_data}))
             return res.json().get('data', [])
 
@@ -193,28 +187,26 @@ class HttpClient:
     #         arg.task_data = json.dumps(task_data)
     #         response = stub.ins_update_task(arg)
     #         return response.result
-    @staticmethod
-    async def get_measure_values_of_packet(mach_id: str) -> dict:
+    async def get_measure_values_of_packet(self, mach_id: str) -> dict:
         logger.trace('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "get_measure_values_of_packet"}
 
         def req() -> requests.Response:
-            res = requests.post('http://[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]:5000/api/v1/get_measure_values_of_packet',
+            res = requests.post(f'{self.api_url}/get_measure_values_of_packet',
                                 data=json.dumps({'m_id': mach_id}))
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
 
 # =================M1================
-    @staticmethod
-    async def get_m1_causes(tool_id: str) -> dict:
+    async def get_m1_causes(self, tool_id: str) -> dict:
         logger.trace('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "get_m1_causes"}
 
         def req() -> requests.Response:
-            res = requests.post('http://[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]:5000/api/v1/get_m1_causes',
+            res = requests.post(f'{self.api_url}/get_m1_causes',
                                 data=json.dumps({'tool_id': tool_id}))
             return res.json().get('data', [])
 
