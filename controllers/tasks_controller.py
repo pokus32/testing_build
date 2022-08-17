@@ -122,7 +122,7 @@ class TasksController():
                     tmp_obj.norm_background_color = bg_color
                     tmp_obj.task_id = task.get('task_id', '---')  # ne izmenyaemoe imya
                     tmp_obj.ppap_id = str(task.get('ppap.part_name', '---'))
-                    tmp_obj.quantity = str(task.get('quantity', '0'))
+                    tmp_obj.quantity = str(int(task.get('quantity', '0')))
                     tmp_obj.finish_date = task.get('finish_date', '---')
                     tmp_obj.bttn.bind(on_release=self.fill_task_input_form)
                     self.data_input.tasks_layout.add_widget(tmp_obj)
@@ -157,8 +157,8 @@ class TasksController():
 
             self.ppaps_pop = Popup(title='Bir PPAP seç',
                                    content=ppaps_list,
-                                   size_hint=(None, None),
-                                   size=("500dp", "400dp"),
+                                   size_hint_y = None,
+                                   height = "350dp",
                                    title_color=[1, 0, 0, 1],
                                    title_size="20dp",
                                    # auto_dismiss=False
