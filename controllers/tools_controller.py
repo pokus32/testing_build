@@ -155,7 +155,7 @@ class ToolsController():
             self.tasks_pop = Popup(title=f'MakNo{arg.tool_id} için, bir emir seç.',
                                    content=tasks_list,
                                    size_hint_y=None,
-                                   height="450dp",
+                                   height="350dp",
                                    title_color=[1, 0, 0, 1],
                                    title_size="20dp",
                                    # auto_dismiss=False
