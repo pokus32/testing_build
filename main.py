@@ -1,15 +1,9 @@
 import asyncio
-
-from kivy.core.window import Window
 from loguru import logger
 import os
 import base64
 
-import kivy
-
 from kivy.app import App
-from kivy.uix.popup import Popup
-# from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
@@ -72,7 +66,7 @@ class QCApp(App):
         self.toolModel = ToolModel(self.grpc_client)
         self.tasks_controller = TasksController(self.taskModel, TaskView, SinglePPAP, PPAPsList)
         self.c_r_controller = CRController(self.cr_model, DimHeader, ColHeader)
-        self.tools_controller = ToolsController(App.get_running_app(), Popup, self.toolModel,
+        self.tools_controller = ToolsController(App.get_running_app(), self.toolModel,
                                                 OneTask, PacketsFormLayout,
                                                 M1CausesList, SingleM1Couse, self.c_r_controller)
         self.request_model = RequestModel(self.grpc_client)
@@ -82,7 +76,6 @@ class QCApp(App):
     def build(self):
         logger.info('QCApp.build')
         self.title = 'ÜRETİM SORUMLUSU'
-        # Window.size = (720, 1280)
 
         return self.rt_wdt
 

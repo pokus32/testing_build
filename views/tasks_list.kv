@@ -265,11 +265,6 @@
                         spacing: "1dp"
                         size_hint_y: None
                         height: self.minimum_height
-                BoxLayout:
-                    size_hint_y: None
-                    height: "1dp"
-                TaskButtons:
-                    parent: root
         BoxLayout:
             ## pravaya pustota
 
@@ -339,46 +334,8 @@
                 size: self.size
                 pos: self.pos
         Button:
-            text:u'Koru'
+            text:u'Ekle'
             on_release: root.parent.save_data()
-
-
-<TaskButtons@BoxLayout>:
-    spacing : "1dp"
-    size_hint_y : None
-    height : "30dp"
-    parent: root
-    canvas:
-        Color:
-            rgba: (0.1,0.1,0.1,0.3)
-        Rectangle:
-            size: self.size
-            pos: self.pos
-    BoxLayout:
-    BoxLayout:
-        size_hint_x: None
-        width: "70dp"
-        canvas:
-            Color:
-                rgb: norm_background_color
-            Rectangle:
-                size: self.size
-                pos: self.pos
-        Button:
-            text:'Sil'
-            on_release: root.parent.remove_task()
-    BoxLayout:
-        size_hint_x: None
-        width: "100dp"
-        canvas:
-            Color:
-                rgb: norm_background_color
-            Rectangle:
-                size: self.size
-                pos: self.pos
-        Button:
-            text:'Emir Ekle'
-            on_release: root.parent.add_new_task()
 
 
 <TaskInputForm>:
@@ -578,35 +535,6 @@
         parent: root
 
 
-<OpenImage>:
-    rows:3
-    id:my_widget
-    spacing: "2dp"
-    #FileChooserListView:
-    FileChooserIconView:
-        id:filechooser
-        path: './../'
-        filters:  ['*.jpeg', '*.jpg', '*.png']
-        on_selection:my_widget.selected(filechooser.selection)
-    Image:
-        id:image
-        source:""
-    BoxLayout:
-        size_hint_y: None
-        height: "37dp"
-        BoxLayout:
-        Button:
-            text: 'Tamam'
-            size_hint_x: None
-            width: "100dp"
-            on_release: root.get_file_path()
-        Button:
-            text: 'Iptal'
-            size_hint_x: None
-            width: "100dp"
-            on_release: root.close_popup()
-
-
 <PPAPsList>:
     ppaps_layout: ppaps_layout
     cancel_button: cancel_button
@@ -620,13 +548,15 @@
             height: self.minimum_height
     BoxLayout:
         size_hint_y: None
-        height: "25dp"
+        height: "39dp"
         orientation: "horizontal"
         BoxLayout:
         Button:
             id: cancel_button
             size_hint_x: None
             width: "100dp"
+            size_hint_y: None
+            height: "35dp"
             text: 'Iptal'
 
 

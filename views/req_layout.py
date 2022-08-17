@@ -67,7 +67,7 @@ class ImageButton(Image):
             try:
                 file.unlink()
             except OSError as e:
-                print("Error: %s : %s" % (file, e.strerror))
+                logger.error(f"Error: {file}: {e.strerror}")
             if len(self.parent.children)<2:
                 rt_wdgt = ''
                 for wdgt in self.walk_reverse():
@@ -344,12 +344,7 @@ class ReqLayout(BoxLayout):
             ii.state = 'normal'
         for ii in self.ids.cons_department_group.children:
             ii.state = 'normal'
-        ## TODO make all image operation in a kivy.cache 
-        # for f in Path.cwd().glob('*_*.jpg'):
-        #     try:
-        #         f.unlink()
-        #     except OSError as e:
-        #         print("Error: %s : %s" % (f, e.strerror))
+        # TODO make all image operation in a kivy.cache
 
         self.__clear_thumbnails()
         self.make_table()

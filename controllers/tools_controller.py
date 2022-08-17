@@ -12,15 +12,13 @@ m1_bg_colors = {'True': [2, 1, 0, 1], 'False': [0, 0.75, 0, 1]}
 
 
 class ToolsController():
-    """ posrednik mejdu view i servisami """
     tasks_pop: Popup
 
-    def __init__(self, app, popup: Popup, model,
+    def __init__(self, app, model,
                  one_task, packets_form_layout,
                  m1_causesList, singleM1Couse, cr_controller):
         logger.info('')
         self.app = app
-        self.popup = popup
         self.model = model
         self.tasks = model.tasks
         self.packets_form_layout = packets_form_layout
@@ -104,6 +102,7 @@ class ToolsController():
 
     def show_m1_causes(self, arg):
         logger.info('')
+
         async def show_m1_causes(tool_id):
             m1_causes_list = await self.model.get_m1_causes(tool_id)
             if m1_causes_list[0] == '':  # TODO make reliable verification
@@ -114,14 +113,14 @@ class ToolsController():
                 tmp_obj.m1_cause = cause
                 m1_causes_list_widget.main_layout.add_widget(tmp_obj)
 
-            m1_causes = self.popup(title='M1 Sebebleri:',
-                                   content=m1_causes_list_widget,
-                                   size_hint=(None, None),
-                                   size=("300dp", "400dp"),
-                                   title_color=[1, 0, 0, 1],
-                                   title_size="20dp",
-                                   # auto_dismiss=False
-                                   )
+            m1_causes = Popup(title='M1 Sebebleri:',
+                              content=m1_causes_list_widget,
+                              size_hint=(None, None),
+                              size=("300dp", "400dp"),
+                              title_color=[1, 0, 0, 1],
+                              title_size="20dp",
+                              # auto_dismiss=False
+                              )
             m1_causes_list_widget.cancel_button.bind(on_release=m1_causes.dismiss)
             m1_causes.open()
 
@@ -142,25 +141,25 @@ class ToolsController():
         tasks_list.tasks_layout.clear_widgets()
 
         async def show_popup():
-            print('Window.size', Window.size)
-            for task in await self.model.get_tasks_fields(['id', 'ppap.part.part_name']):
+            logger.info('Window.size', Window.size)
+            for task in await self.model.get_tasks_fields(['task_id', 'ppap.part_name']):
                 if not task:
                     continue
                 tmp_obj = self.one_task()
                 tmp_obj.task_id = task['task_id']
                 tmp_obj.tool_id = arg.tool_id
-                tmp_obj.part_name = task['part_name']
+                tmp_obj.part_name = task['ppap.part_name']
                 tmp_obj.task_to_m_tool.bind(on_release=self.assign_task_to_mtool)
                 tasks_list.tasks_layout.add_widget(tmp_obj)
 
-            self.tasks_pop = self.popup(title=f'MakNo{arg.tool_id} için, bir emir seç.',
-                                        content=tasks_list,
-                                        size_hint=(None, None),
-                                        size=("450dp", "500dp"),
-                                        title_color=[1, 0, 0, 1],
-                                        title_size="20dp",
-                                        # auto_dismiss=False
-                                        )
+            self.tasks_pop = Popup(title=f'MakNo{arg.tool_id} için, bir emir seç.',
+                                   content=tasks_list,
+                                   size_hint_y=None,
+                                   height="450dp",
+                                   title_color=[1, 0, 0, 1],
+                                   title_size="20dp",
+                                   # auto_dismiss=False
+                                   )
             tasks_list.cancel_button.bind(on_release=self.tasks_pop.dismiss)
             self.tasks_pop.open()
 

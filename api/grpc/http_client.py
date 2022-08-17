@@ -12,8 +12,9 @@ import json
 
 MAX_MESSAGE_LENGTH = 40194304
 
-# SERVER = '[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]'
-SERVER = '[202:af01:395e:4fcc:30f3:5433:f878:6e35]'
+SERVER = '[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]'
+# SERVER = '[202:af01:395e:4fcc:30f3:5433:f878:6e35]'
+# SERVER = 'localhost'
 
 class HttpClient:
     """ grpc client for robo server """
@@ -49,7 +50,6 @@ class HttpClient:
             res = requests.post(f'{self.api_url}/get_tasks',
                                data='---')
             result = res.json().get('data', b'')
-            print(type(result))
             return pickle.loads(result)
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -69,12 +69,12 @@ class HttpClient:
         logger.trace('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "get_tasks_fields"}
-        print(fields)
 
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_tasks_fields',
                                 data=json.dumps({'fields': fields}))
-            return res.json().get('data', [])
+            res = res.json().get('data', [])
+            return res
 
         return await asyncio.create_task(asyncio.to_thread(req))
 
@@ -152,7 +152,6 @@ class HttpClient:
         logger.trace('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "get_ppaps_fields"}
-        print(fields)
 
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_ppaps_fields',
@@ -165,7 +164,6 @@ class HttpClient:
         logger.trace('')
         headers = {'Content-Type': 'application/json'}
         params = {"method": "ins_update_task"}
-        print(task_data)
 
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/ins_update_task',

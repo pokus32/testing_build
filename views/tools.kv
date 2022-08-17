@@ -59,11 +59,11 @@
     	size_hint_x: 1
 	    Label:
 	    	text: 'ÜRETİM'
-	    	font_size: "29dp"
+	    	font_size: "29sp"
 	    	color: (0, 0, 0, 1)
 	Label:
 		text: root.date_time
-		font_size: "17dp"
+		font_size: "17sp"
 		color: (0, 0, 0, 1)
 		size_hint_x: None
 		width: "99dp"
@@ -132,8 +132,6 @@
 	    # padding : 1
 	    # orientation: 'horizontal'
 	    cols: 4
-	   
-
 		FirstColGridLayout:
 			id: first_column
 			size_hint_x: None
@@ -177,10 +175,14 @@
 		Button:
 			text: ''
 			tool_id: root.tool_id
+			size_hint_x: None
+			width: "69dp"
 		Button:
 			id: open_cr_scr
 			text: 'KR'
 			tool_id: root.tool_id
+			size_hint_x: None
+			width: "69dp"
 
 <FirstColGridLayout>:
 	alarm_button: alarm_button
@@ -197,14 +199,14 @@
 	Button:
 		id: alarm_button
 		size_hint_y: None
-		height: "35dp"
+		height: "35sp"
 		text: 'ALARM'
 		background_color: alarm_color_red_off
 		# size_hint_x: None
 	Button:
 		id: m1_button
 		size_hint_y: None
-		height: "35dp"
+		height: "35sp"
 		text: 'M1'
 		background_color: m1_off_bk_col
 		tool_id: root.tool_id
@@ -388,7 +390,7 @@
 		size_hint_y: None
 		height: "41dp"
 		text: ""
-		font_size: "21dp"
+		font_size: "21sp"
 
 	GridLayout:
 		rows: 4

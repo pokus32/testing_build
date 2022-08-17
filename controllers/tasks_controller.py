@@ -120,8 +120,8 @@ class TasksController():
                 if task:
                     tmp_obj = self.taskView()
                     tmp_obj.norm_background_color = bg_color
-                    tmp_obj.task_id = task.get('id', '---')  # ne izmenyaemoe imya
-                    tmp_obj.ppap_id = task.get('ppap_id', '---')
+                    tmp_obj.task_id = task.get('task_id', '---')  # ne izmenyaemoe imya
+                    tmp_obj.ppap_id = str(task.get('ppap.part_name', '---'))
                     tmp_obj.quantity = str(task.get('quantity', '0'))
                     tmp_obj.finish_date = task.get('finish_date', '---')
                     tmp_obj.bttn.bind(on_release=self.fill_task_input_form)
@@ -129,7 +129,7 @@ class TasksController():
                 i += 1
 
         coro = asyncio.ensure_future(
-            self.model.get_tasks_fields(['id', 'ppap_id', 'quantity', 'finish_date'])
+            self.model.get_tasks_fields(['task_id', 'ppap.part_name', 'quantity', 'finish_date'])
         )
         task = asyncio.gather(coro, return_exceptions=False)
         task.add_done_callback(done_callback)

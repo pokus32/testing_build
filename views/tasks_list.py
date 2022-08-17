@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-# from kivy.uix.textinput import TextInput
 from kivy.uix.gridlayout import GridLayout
 from kivy.properties import ObjectProperty
 from kivy.properties import ColorProperty, StringProperty
@@ -23,7 +22,6 @@ class TaskView(BoxLayout):
     remove_bttn = ObjectProperty()
     bttn = ObjectProperty()
     norm_background_color = ColorProperty()
-
 
     def set_mystate(self, state):
         if state == 'down':
