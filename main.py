@@ -1,4 +1,6 @@
 import asyncio
+
+from kivy.core.window import Window
 from loguru import logger
 import os
 import base64
@@ -76,6 +78,7 @@ class QCApp(App):
     def build(self):
         logger.info('QCApp.build')
         self.title = 'ÜRETİM SORUMLUSU'
+        Window.size = (720, 1230)
 
         return self.rt_wdt
 

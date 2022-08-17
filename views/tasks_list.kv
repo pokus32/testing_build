@@ -234,39 +234,30 @@
     tasks_layout: tasks_layout
     task_input_form: task_input_form
     BoxLayout:
-        orientation : 'horizontal'
+        id: middle_layout
+        spacing : "1dp"
+        orientation: 'vertical'
         BoxLayout:
-            ## levaya pustota
+            size_hint_y: None
+            height: "11dp"
+        TaskInputForm:
+            id: task_input_form
+            size_hint_y: None
+            height: "101dp"
+            prnt: root
         BoxLayout:
-            id: middle_layout
-            size_hint_x : None
-            width : "700dp"
-            spacing : "1dp"
-            padding : "1dp"
-            orientation: 'vertical'
+            orientation: "vertical"
+            HeaderTask:
             BoxLayout:
                 size_hint_y: None
-                height: "11dp"
-            TaskInputForm:
-                id: task_input_form
-                size_hint_y: None
-                height: "101dp"
-                prnt: root
-            BoxLayout:
-                orientation: "vertical"
-                HeaderTask:
-                BoxLayout:
+                height: "1dp"
+            TasksSView:
+                GridLayout:
+                    id: tasks_layout
+                    cols: 1
+                    spacing: "1dp"
                     size_hint_y: None
-                    height: "1dp"
-                TasksSView:
-                    GridLayout:
-                        id: tasks_layout
-                        cols: 1
-                        spacing: "1dp"
-                        size_hint_y: None
-                        height: self.minimum_height
-        BoxLayout:
-            ## pravaya pustota
+                    height: self.minimum_height
 
 
 <TasksSView@ScrollView>:
@@ -342,7 +333,6 @@
     task_id: task_id
     finish_date: finish_date
     ppap_id: ppap_id
-    second_row: second_row
     quantity: quantity
     rows_layout: rows_layout
     set_part_name_id: set_part_name_id
@@ -368,7 +358,7 @@
                     pos: self.pos
             BoxLayout:
                 size_hint_x: None
-                width: "101dp"
+                width: "77dp"
                 canvas:
                     Color:
                         rgb: norm_background_color
@@ -382,8 +372,8 @@
                     color: 0,0,0,1
                     text : "İş emri No: "
             BoxLayout:
-                size_hint_x: None
-                width: "93dp"
+#                size_hint_x: None
+#                width: "53dp"
                 canvas:
                     Color:
                         rgb: norm_background_color
@@ -396,9 +386,17 @@
                     font_size : '12sp'
                     color: 0,0,0,1
                     write_tab: False
+        BoxLayout:
+            spacing : "1dp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
             BoxLayout:
                 size_hint_x: None
-                width: "141dp"
+                width: "101dp"
                 canvas:
                     Color:
                         rgb: norm_background_color
@@ -410,7 +408,83 @@
                     halign : "right"
                     valign : "middle"
                     color: 0,0,0,1
-                    text : " PPAP No/parça adı: "
+                    text : "Siparış adeti: "
+            BoxLayout:
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                TextInput:
+                    id: quantity
+                    input_filter: 'int'
+                    font_size : '12sp'
+                    on_text: root.set_new_task_quantity(self.text)
+                    color: 0,0,0,1
+                    write_tab: False
+            BoxLayout:
+                size_hint_x: None
+                width: "91dp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Label:
+                    text_size : self.size
+                    halign : "right"
+                    valign : "middle"
+                    color: 0,0,0,1
+                    text : " Teslim tarihi: "
+            BoxLayout:
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                TextInput:
+                    # background_color: norm_background_color
+                    id: finish_date
+                    on_text: root.set_new_task_finish_date(self.text)
+                    font_size : '12sp'
+                    color: 0,0,0,1
+                    write_tab: False
+    BoxLayout:
+        spacing : "1dp"
+        size_hint_y : None
+        height : "30dp"
+        canvas:
+            Color:
+                rgb: (0, 0, 0, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            spacing : "1dp"
+            canvas:
+                Color:
+                    rgb: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                size_hint_x: None
+                width: "51dp"
+                canvas:
+                    Color:
+                        rgb: norm_background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Label:
+                    text_size : self.size
+                    halign : "right"
+                    valign : "middle"
+                    color: 0,0,0,1
+                    text : " PPAP: "
             BoxLayout:
                 canvas:
                     Color:
@@ -439,85 +513,6 @@
                     id: set_part_name_id
                     text: "<<"
                     on_release: root.select_ppap()
-    BoxLayout:
-        id: second_row
-        spacing : "1dp"
-        size_hint_y : None
-        height : "30dp"
-        canvas:
-            Color:
-                rgb: (0, 0, 0, 1)
-            Rectangle:
-                size: self.size
-                pos: self.pos
-        BoxLayout:
-            spacing : "1dp"
-            canvas:
-                Color:
-                    rgb: (0, 0, 0, 1)
-                Rectangle:
-                    size: self.size
-                    pos: self.pos
-            BoxLayout:
-                size_hint_x: None
-                width: "101dp"
-                canvas:
-                    Color:
-                        rgb: norm_background_color
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-                Label:
-                    text_size : self.size
-                    halign : "right"
-                    valign : "middle"
-                    color: 0,0,0,1
-                    text : "Siparış adeti: "
-            BoxLayout:
-                size_hint_x: None
-                width: "93dp"
-                canvas:
-                    Color:
-                        rgb: norm_background_color
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-                TextInput:
-                    id: quantity
-                    input_filter: 'int'
-                    font_size : '12sp'
-                    on_text: root.set_new_task_quantity(self.text)
-                    color: 0,0,0,1
-                    write_tab: False
-            BoxLayout:
-                size_hint_x: None
-                width: "121dp"
-                canvas:
-                    Color:
-                        rgb: norm_background_color
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-                Label:
-                    text_size : self.size
-                    halign : "right"
-                    valign : "middle"
-                    color: 0,0,0,1
-                    text : " Teslim tarihi: "
-            BoxLayout:
-                canvas:
-                    Color:
-                        rgb: norm_background_color
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-                TextInput:
-                    # background_color: norm_background_color
-                    id: finish_date
-                    on_text: root.set_new_task_finish_date(self.text)
-                    font_size : '12sp'
-                    color: 0,0,0,1
-                    write_tab: False
     BoxLayout:
         orientation: "vertical"
         # height: 0.2
