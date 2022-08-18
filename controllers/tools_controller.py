@@ -33,7 +33,7 @@ class ToolsController():
     async def update_refreshable_interface_info(self, arg=None):
         logger.trace('')
         # TODO: Move assigning date_time to independent async function, for smooth periodic update.
-        self.tools_screen.date_time = datetime.now().strftime("%d:%m:%y") + "\n" + datetime.now().strftime("%H:%M:%S")
+        self.tools_screen.date_time = datetime.now().strftime("%H:%M")
         for m_id in self.model.tools_ids:
             item = await self.model.get_tool_refreshable_info(m_id)
             item = item.get('data', {})
@@ -141,7 +141,7 @@ class ToolsController():
         tasks_list.tasks_layout.clear_widgets()
 
         async def show_popup():
-            logger.info('Window.size', Window.size)
+            logger.info(f'Window.size: {Window.size}')
             for task in await self.model.get_tasks_fields(['task_id', 'ppap.part_name']):
                 if not task:
                     continue

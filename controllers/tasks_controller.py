@@ -68,13 +68,13 @@ class TasksController():
         def done_callback(arg: asyncio.Future):
             logger.info('')
             self.clear_task_input_form()
-            task = arg.result()[0]
+            task_data = arg.result()[0]
 
             self.task_input_form.task_id.item_id = button.item_id  ## id of a task
-            self.task_input_form.task_id.text = task.get('id', '---')
-            self.task_input_form.ppap_id.text = task.get('ppap_id', '---')
-            self.task_input_form.quantity.text = str(task.get('quantity', '0'))
-            self.task_input_form.finish_date.text = task.get('finish_date', '---')
+            self.task_input_form.task_id.text = task_data.get('id', '---')
+            self.task_input_form.ppap_id.text = task_data.get('ppap_id', '---')
+            self.task_input_form.quantity.text = str(task_data.get('quantity', '0'))
+            self.task_input_form.finish_date.text = task_data.get('finish_date', '---')
 
         if button.state == 'down':
             coro = asyncio.ensure_future(

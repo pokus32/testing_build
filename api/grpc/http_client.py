@@ -12,8 +12,8 @@ import json
 
 MAX_MESSAGE_LENGTH = 40194304
 
-SERVER = '[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]'
-# SERVER = '[202:af01:395e:4fcc:30f3:5433:f878:6e35]'
+# SERVER = '[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]'
+SERVER = '[202:af01:395e:4fcc:30f3:5433:f878:6e35]'
 # SERVER = 'localhost'
 
 class HttpClient:

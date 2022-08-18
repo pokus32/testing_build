@@ -365,7 +365,7 @@
                     pos: self.pos
             BoxLayout:
                 size_hint_x: None
-                width: "77dp"
+                width: "81dp"
                 canvas:
                     Color:
                         rgb: norm_background_color
@@ -386,19 +386,13 @@
                         size: self.size
                         pos: self.pos
                 TextInput:
+                    size_hint_x: None
+                    width: "77dp"
                     id: task_id
                     on_text: root.set_new_task_id(self.text)
                     font_size : '12sp'
                     color: 0,0,0,1
                     write_tab: False
-            BoxLayout:
-                spacing : "1dp"
-                canvas:
-                    Color:
-                        rgb: (0, 0, 0, 1)
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
                 BoxLayout:
                     canvas:
                         Color:
@@ -490,12 +484,10 @@
                     id: set_part_name_id
                     text: "<<"
                     on_release: root.select_ppap()
+    FormButtons:
+        parent: root
     BoxLayout:
         orientation: "vertical"
-        # height: 0.2
-        BoxLayout:
-            size_hint_y: None
-            height: "2dp"
         TasksSView:
             GridLayout:
                 id: rows_layout
@@ -503,8 +495,6 @@
                 spacing: "1dp"
                 size_hint_y: None
                 height: self.minimum_height
-    FormButtons:
-        parent: root
 
 
 <PPAPsList>:
