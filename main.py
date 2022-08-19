@@ -11,7 +11,7 @@ from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 from kivy.cache import Cache
 
-from api.grpc.http_client import HttpClient
+from api.http.http_client import HttpClient
 from controllers.tasks_controller import TasksController
 from controllers.tools_controller import ToolsController
 from controllers.c_rep_controller import CRController

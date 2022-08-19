@@ -150,4 +150,4 @@ config.py
 #proto buffer files
 *pb2.py
 *pb2_grpc.py
-/prod.crt
+/api/http/prod.crt

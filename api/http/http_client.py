@@ -1,22 +1,24 @@
 import asyncio
+import os
 import pickle
 
 import requests
 from loguru import logger
 import json
 
-# import grpc
+# import http
 #
-# import api.grpc.robo_srv_pb2 as robo_srv_pb2
-# import api.grpc.robo_srv_pb2_grpc as robo_srv_pb2_grpc
+# import api.http.robo_srv_pb2 as robo_srv_pb2
+# import api.http.robo_srv_pb2_grpc as robo_srv_pb2_grpc
 
 MAX_MESSAGE_LENGTH = 40194304
 
 # SERVER = '[205:448f:5785:7f4b:59ab:c9e6:dbae:2407]'
 SERVER = '[202:af01:395e:4fcc:30f3:5433:f878:6e35]'
-
-
 # SERVER = 'localhost'
+
+prod_crt = os.path.join(os.path.split(__file__)[0]) + '/prod.crt'
+logger.info("prod_crt", prod_crt)
 
 class HttpClient:
     """ http client for robo server """
@@ -32,7 +34,7 @@ class HttpClient:
 
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_tasks',
-                                data='---', verify='././prod.crt')
+                                data='---', verify=prod_crt)
             result = res.json().get('data', b'')
             return pickle.loads(result)
 
@@ -46,7 +48,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_tasks_fields',
                                 data=json.dumps({'fields': fields}),
-                                verify='./prod.crt')
+                                verify=prod_crt)
             res = res.json().get('data', [])
             return res
 
@@ -60,7 +62,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/assign_task_to_mtool',
                                 data=json.dumps({'tool_id': tool_id, 'task_id': task_id}),
-                                verify='./prod.crt')
+                                verify=prod_crt)
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -73,7 +75,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/remove_task_from_mtool',
                                 data=json.dumps({'tool_id': tool_id}),
-                                verify='./prod.crt')
+                                verify=prod_crt)
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -82,7 +84,7 @@ class HttpClient:
         logger.info('')
         params = {"method": "get_tools_ids"}
         res = requests.post(f'{self.api_url}/get_tools_ids', json=params,
-                            verify='./prod.crt')
+                            verify=prod_crt)
         return res.json().get('data', [])
 
     async def get_tool_refreshable_info(self, t_id: str) -> dict:
@@ -93,7 +95,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_tool_refreshable_info',
                                 data=json.dumps({'t_id': t_id}),
-                                verify='./prod.crt')
+                                verify=prod_crt)
             return res.json()
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -106,7 +108,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_ppaps_fields',
                                 data=json.dumps({'fields': fields}),
-                                verify='./prod.crt')
+                                verify=prod_crt)
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -119,7 +121,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/ins_update_task',
                                 data=json.dumps({'task_data': task_data}),
-                                verify='./prod.crt')
+                                verify=prod_crt)
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -132,7 +134,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_measure_values_of_packet',
                                 data=json.dumps({'m_id': mach_id}),
-                                verify='./prod.crt')
+                                verify=prod_crt)
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -146,7 +148,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_m1_causes',
                                 data=json.dumps({'tool_id': tool_id}),
-                                verify='./prod.crt')
+                                verify=prod_crt)
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -156,48 +158,48 @@ class HttpClient:
     # async def get_staff_requests(self) -> bytes:
     #     logger.info('')
     #     try:
-    #         async with grpc.aio.secure_channel(
+    #         async with http.aio.secure_channel(
     #                 self.__server_address_port,
     #                 self.__creds,
-    #                 compression=grpc.Compression.Gzip,
+    #                 compression=http.Compression.Gzip,
     #                 options=self.__options) as channel:
     #             aio_stub = robo_srv_pb2_grpc.roboStub(channel)
     #             arg = robo_srv_pb2.empty_request()
     #             response = await aio_stub.get_staff_requests(arg)
     #             return response.result
-    #     except grpc.RpcError as rpc_error:
+    #     except http.RpcError as rpc_error:
     #         logger.error(rpc_error)
     #         return b''
     #
     # async def get_last_out_n(self) -> str:
     #     logger.info('')
     #     try:
-    #         async with grpc.aio.secure_channel(
+    #         async with http.aio.secure_channel(
     #                 self.__server_address_port,
     #                 self.__creds,
-    #                 compression=grpc.Compression.Gzip,
+    #                 compression=http.Compression.Gzip,
     #                 options=self.__options) as channel:
     #             aio_stub = robo_srv_pb2_grpc.roboStub(channel)
     #             arg = robo_srv_pb2.empty_request()
     #             response = await aio_stub.get_last_out_n(arg)
     #             return response.result
-    #     except grpc.RpcError as rpc_error:
+    #     except http.RpcError as rpc_error:
     #         logger.error(rpc_error)
     #         return ''
     #
     # async def insert_request_data(self, data):
     #     logger.info('')
     #     try:
-    #         async with grpc.aio.secure_channel(
+    #         async with http.aio.secure_channel(
     #                 self.__server_address_port,
     #                 self.__creds,
-    #                 compression=grpc.Compression.Gzip,
+    #                 compression=http.Compression.Gzip,
     #                 options=self.__options) as channel:
     #             aio_stub = robo_srv_pb2_grpc.roboStub(channel)
     #             arg = robo_srv_pb2.insert_request_data_request()
     #             arg.data = data
     #             response = await aio_stub.insert_request_data(arg)
     #             return response.result
-    #     except grpc.RpcError as rpc_error:
+    #     except http.RpcError as rpc_error:
     #         logger.error(rpc_error)
     #         return None

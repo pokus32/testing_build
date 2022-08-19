@@ -1,6 +1,6 @@
 from loguru import logger
 
-from api.grpc.http_client import HttpClient
+from api.http.http_client import HttpClient
 
 
 
