@@ -32,7 +32,7 @@ class HttpClient:
 
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_tasks',
-                                data='---', verify='prod.crt')
+                                data='---', verify='././prod.crt')
             result = res.json().get('data', b'')
             return pickle.loads(result)
 
@@ -46,7 +46,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_tasks_fields',
                                 data=json.dumps({'fields': fields}),
-                                verify='prod.crt')
+                                verify='./prod.crt')
             res = res.json().get('data', [])
             return res
 
@@ -60,7 +60,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/assign_task_to_mtool',
                                 data=json.dumps({'tool_id': tool_id, 'task_id': task_id}),
-                                verify='prod.crt')
+                                verify='./prod.crt')
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -73,7 +73,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/remove_task_from_mtool',
                                 data=json.dumps({'tool_id': tool_id}),
-                                verify='prod.crt')
+                                verify='./prod.crt')
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -82,7 +82,7 @@ class HttpClient:
         logger.info('')
         params = {"method": "get_tools_ids"}
         res = requests.post(f'{self.api_url}/get_tools_ids', json=params,
-                            verify='prod.crt')
+                            verify='./prod.crt')
         return res.json().get('data', [])
 
     async def get_tool_refreshable_info(self, t_id: str) -> dict:
@@ -93,7 +93,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_tool_refreshable_info',
                                 data=json.dumps({'t_id': t_id}),
-                                verify='prod.crt')
+                                verify='./prod.crt')
             return res.json()
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -106,7 +106,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_ppaps_fields',
                                 data=json.dumps({'fields': fields}),
-                                verify='prod.crt')
+                                verify='./prod.crt')
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -119,7 +119,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/ins_update_task',
                                 data=json.dumps({'task_data': task_data}),
-                                verify='prod.crt')
+                                verify='./prod.crt')
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -132,7 +132,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_measure_values_of_packet',
                                 data=json.dumps({'m_id': mach_id}),
-                                verify='prod.crt')
+                                verify='./prod.crt')
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
@@ -146,7 +146,7 @@ class HttpClient:
         def req() -> requests.Response:
             res = requests.post(f'{self.api_url}/get_m1_causes',
                                 data=json.dumps({'tool_id': tool_id}),
-                                verify='prod.crt')
+                                verify='./prod.crt')
             return res.json().get('data', [])
 
         return await asyncio.create_task(asyncio.to_thread(req))
